@@ -11,14 +11,12 @@ export const JobPostHandel = (event) => {
   const job_type = getData("JobType");
   const salary = getData("salary");
   const company = getData("companies");
-  // const category = getData("categories");
   const employer = localStorage.getItem("user_id");
 
   const data = {
     employer: employer,
     company: company,
     title: title,
-    // category: [category],
     description: description,
     requirment: requirment,
     loaction: loaction,
@@ -65,7 +63,7 @@ export const JobDeleteHandel = (event, id) => {
     .then((res) => {
       if (res.ok) {
         console.log("job deleted");
-        window.location.href = "/employe_profile";
+        window.location.href = "/";
       }
     })
     .catch((error) => console.log(error));
