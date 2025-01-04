@@ -58,7 +58,6 @@ export const UserRegistration = (event) => {
     confirm_password
   ) {
     if (password == confirm_password) {
-      document.getElementById("error").innerText = "";
       if (
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
           password
@@ -69,10 +68,16 @@ export const UserRegistration = (event) => {
           headers: { "content-type": "application/json" },
           body: JSON.stringify(data),
         })
-          .then((res) => res.json())
-          .then((data) => {
-            window.location.href = "/login";
+          .then((res) => {
+            if(res.ok){
+              toast.success("Account created Successful")
+              window.location.href = "/login";
+            }
+            else{
+              toast.error("Something is wrong")
+            } 
           });
+
       } else {
         toast.error("pass must contain eight characters, one number and one special character, at least one letter");
       }
@@ -83,6 +88,7 @@ export const UserRegistration = (event) => {
       toast.error("Please fill in all required fields for registration.");
   }
 };
+// SIAM123456@
 
 export const UserLogout = () => {
   const auth_token = localStorage.getItem("token");
