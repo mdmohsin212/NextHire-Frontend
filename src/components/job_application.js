@@ -37,6 +37,9 @@ export const JobApplication = (event, job_id) => {
         if (res.ok) {
           toast.success("Job application succesful");
         }
+        else{
+          toast.error("something is wrong")
+        }
       });
     } else {
       toast.error("Please fill in all required fields for job application.");
