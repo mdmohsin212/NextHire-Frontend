@@ -70,8 +70,7 @@ export const UserRegistration = (event) => {
         })
           .then((res) => {
             if(res.ok){
-              toast.success("Account created Successful")
-              window.location.href = "/login";
+              toast.success("Account created Successful. Check Mail for confirmation")
             }
             else{
               toast.error("Something is wrong")
