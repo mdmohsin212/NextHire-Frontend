@@ -125,7 +125,7 @@ const Signup = () => {
           </div>
           <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="public/images/signup-image.jpg"
+              src="images/signup-image.jpg"
               className="img-fluid rounded-4 w-75"
               alt="Sign up illustration"
             />

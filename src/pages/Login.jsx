@@ -60,7 +60,7 @@ const Login = () => {
           </div>
           <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="public/images/signin-image.jpg"
+              src="images/signin-image.jpg"
               class="img-fluid rounded-3 w-50"
               alt="Sign in illustration"
             />
