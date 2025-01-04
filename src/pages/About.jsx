@@ -19,14 +19,14 @@ const About = () => {
                 <div className="col-6 text-start">
                   <img
                     className="img-fluid w-100"
-                    src="src/images/about-1.jpg"
+                    src="src/assets/images/about-1.jpg"
                     alt=""
                   />
                 </div>
                 <div className="col-6 text-start">
                   <img
                     className="img-fluid"
-                    src="src/images/about-2.jpg"
+                    src="src/assets/images/about-2.jpg"
                     alt=""
                     style={{ width: "85%", marginTop: "15%" }}
                   />
@@ -34,7 +34,7 @@ const About = () => {
                 <div className="col-6 text-end">
                   <img
                     className="img-fluid"
-                    src="src/images/about-3.jpg"
+                    src="src/assets/images/about-3.jpg"
                     alt=""
                     style={{ width: "85%" }}
                   />
@@ -42,7 +42,7 @@ const About = () => {
                 <div className="col-6 text-end">
                   <img
                     className="img-fluid w-100"
-                    src="src/images/about-4.jpg"
+                    src="src/assets/images/about-4.jpg"
                     alt=""
                   />
                 </div>
