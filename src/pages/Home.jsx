@@ -18,7 +18,7 @@ const Home = () => {
             <div className="owl-carousel-item position-relative">
               <img
                 className="img-fluid"
-                src="src/assets/images/carousel-1.jpg"
+                src="public/images/carousel-1.jpg"
                 alt=""
               />
               <div
