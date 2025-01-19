@@ -9,23 +9,34 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { JobApplication } from "../components/job_application";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const JobDetails = () => {
-  const job_id = useParams().id;
+  const { id: job_id } = useParams();
   const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`https://nexthire-backend.onrender.com/job/list/${job_id}/`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch job details");
+        return res.json();
+      })
       .then((data) => {
         setJob(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
+        toast.error("Failed to load job details");
+        setLoading(false);
       });
   }, [job_id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -39,7 +50,7 @@ const JobDetails = () => {
                   <img
                     className="flex-shrink-0 img-fluid border rounded"
                     src={job.company_img}
-                    alt=""
+                    alt={job.title}
                     style={{ width: "80px", height: "80px" }}
                   />
                   <div className="ps-4">
@@ -74,66 +85,7 @@ const JobDetails = () => {
                   <h4 className="mb-3">Qualifications</h4>
                   <p>{job.requirment}</p>
                 </div>
-
-                {/* Job Application start */}
-                <div>
-                  <h4 className="mb-4">Apply For The Job</h4>
-                  <form method="post" encType="multipart/form-data">
-                    <div className="row g-3">
-                      <div className="col-12 col-sm-6">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="applicant-name"
-                          placeholder="Your Name"
-                        />
-                      </div>
-                      <div className="col-12 col-sm-6">
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="applicant-email"
-                          placeholder="Your Email"
-                        />
-                      </div>
-                      <div className="col-12 col-sm-6">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="applicant-website"
-                          placeholder="Portfolio Website"
-                        />
-                      </div>
-                      <div className="col-12 col-sm-6">
-                        <input
-                          type="file"
-                          id="applicant-cv"
-                          className="form-control bg-white"
-                        />
-                      </div>
-                      <div className="col-12">
-                        <textarea
-                          className="form-control"
-                          rows="5"
-                          id="applicant-letter"
-                          placeholder="Cover letter"
-                        ></textarea>
-                      </div>
-                      <div className="col-12">
-                        <button
-                          className="btn btn-primary w-100"
-                          type="submit"
-                          style={{ backgroundColor: "#00b074" }}
-                          onClick={(e) => JobApplication(e, job.id)}
-                        >
-                          Apply Now
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
               </div>
-              {/* Job Application end */}
 
               <div className="col-lg-4">
                 <div
@@ -179,11 +131,68 @@ const JobDetails = () => {
                   </p>
                 </div>
               </div>
+
+              <div>
+                <h4 className="mb-4">Apply For The Job</h4>
+                <form method="post" encType="multipart/form-data">
+                  <div className="row g-3">
+                    <div className="col-12 col-sm-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="applicant-name"
+                        placeholder="Your Name"
+                      />
+                    </div>
+                    <div className="col-12 col-sm-6">
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="applicant-email"
+                        placeholder="Your Email"
+                      />
+                    </div>
+                    <div className="col-12 col-sm-6">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="applicant-website"
+                        placeholder="Portfolio Website"
+                      />
+                    </div>
+                    <div className="col-12 col-sm-6">
+                      <input
+                        type="file"
+                        id="applicant-cv"
+                        className="form-control bg-white"
+                      />
+                    </div>
+                    <div className="col-12">
+                      <textarea
+                        className="form-control"
+                        rows="5"
+                        id="applicant-letter"
+                        placeholder="Cover letter"
+                      ></textarea>
+                    </div>
+                    <div className="col-12">
+                      <button
+                        className="btn btn-primary w-100"
+                        type="button"
+                        style={{ backgroundColor: "#00b074" }}
+                        onClick={(e) => JobApplication(e, job.id)}
+                      >
+                        Apply Now
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>No job details available</p>
       )}
       <Footer />
     </>

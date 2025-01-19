@@ -7,7 +7,6 @@ import Nav from "./pages/Nav";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-// import JobPage from "./pages/Job_page";
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import JobDeatils from "./pages/Job_deatils";
@@ -16,6 +15,8 @@ import EmployeProfile from "./pages/Employ_profile";
 import Applicant from "./pages/Applicant";
 import SeekerProfile from "./pages/Seeker_profile";
 import ShowJob from "./pages/Job";
+import Profile from './pages/Profile';
+import ChangePassword from "./pages/Change_password";
 
 function App() {
   return (
@@ -32,9 +33,11 @@ function App() {
         <Route path="/post_job" element={<JobPost />} />
         <Route path="/employe_profile" element={<EmployeProfile />} />
         <Route path="/applicant_list/:id" element={<Applicant />} />
-        <Route path="/seeker_profile" element={<SeekerProfile />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/applied_jobs" element={<SeekerProfile />} />
+        <Route path="/change_password" element={<ChangePassword />} />
       </Routes>
-    </> 
+    </>
   );  
 }
 

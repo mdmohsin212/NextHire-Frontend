@@ -13,7 +13,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="container-fluid bg-dark text-white footer pt-5 mt-5">
+    <div className="container-fluid bg-dark text-white footer mt-5">
       <div className="container py-5">
         <div className="row">
           <div className="col-lg-3 col-md-6">

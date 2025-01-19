@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import Accordion from "./Accrodian";
 
 const About = () => {
   const location = useLocation();
+  const [jobs, setJobs] = useState([]);
 
-  console.log(location);
+  useEffect(() => {
+    fetch(`https://nexthire-backend.onrender.com/job/list/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setJobs(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   return (
     <div>
@@ -83,6 +94,36 @@ const About = () => {
         </div>
       </div>
 
+      <div className="mt-5 mb-5 statistics-section">
+        <div className="container text-center">
+          <div className="row justify-content-around text-center gap-3">
+            <div className="col-md-3 col-12">
+              <h2 className="fw-bold display-4 bg">{jobs.length}+</h2>
+              <p className="text-muted">Jobs Available</p>
+            </div>
+            <div className="col-md-3 col-12">
+              <h2 className="fw-bold display-4 bg">15+</h2>
+              <p className="text-muted">Partner Companies</p>
+            </div>
+            <div className="col-md-3 col-12">
+              <h2 className="fw-bold display-4 bg">1+</h2>
+              <p className="text-muted">Years of Excellence</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="text-center">
+          <h3>Questions & Answers</h3>
+          <p>
+            Search all the open positions on the web. Get your own personalized
+            salary <br /> estimate. Read reviews on over 5000+ companies
+            worldwide.
+          </p>
+        </div>
+        <Accordion />
+      </div>
       {location.pathname === "/about" && <Footer />}
     </div>
   );

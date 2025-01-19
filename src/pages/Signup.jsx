@@ -9,7 +9,7 @@ const Signup = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div className="signup shadow-lg p-4 mb-5 bg-body-tertiary rounded-4 w-75 m-auto mt-4">
+      <div className="signup p-4 mb-5 rounded-4 w-75 m-auto mt-4">
         <h2 className="text-center">Sign up</h2>
         <div className="row">
           <div className="col-md-6">
@@ -125,7 +125,7 @@ const Signup = () => {
           </div>
           <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="images/signup-image.jpg"
+              src="images/signup.svg"
               className="img-fluid rounded-4 w-75"
               alt="Sign up illustration"
             />

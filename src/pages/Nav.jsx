@@ -1,13 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "/src/styles/nav_style.css";
 import { UserLogout } from "/src/context/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faRightToBracket,
+  faBriefcase,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   let isAuthenticated = false;
   const userData = localStorage.getItem("token");
   const userid = localStorage.getItem("user_id");
   const userrole = localStorage.getItem("role");
+  const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://nexthire-backend.onrender.com/user/profile/?id=${userid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setInfo(data[0].user);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   if (userData && userid) {
     isAuthenticated = true;
@@ -32,9 +50,12 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link active fs-5 fw-medium">
+                <Link
+                  to="/"
+                  className="nav-link btn btn-hover active fs-5 fw-medium"
+                >
                   Home
                 </Link>
               </li>
@@ -54,74 +75,137 @@ const Navbar = () => {
                   About
                 </Link>
               </li>
-
-              {userrole == "Employer" ? (
-                <li className="nav-item">
-                  <Link
-                    to="/post_job"
-                    className="btn btn-hover nav-link fs-5 fw-medium"
-                  >
-                    Post Job
-                  </Link>
-                </li>
-              ) : (
-                <li className="nav-item">
-                  <Link
-                    to="/contact"
-                    className="btn btn-hover nav-link fs-5 fw-medium"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              )}
+              <li className="nav-item">
+                <Link
+                  to="/contact"
+                  className="btn btn-hover nav-link fs-5 fw-medium"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
 
-            {isAuthenticated && userrole === "Employer" ? (
-              <div>
-                <Link
-                  to="/employe_profile"
-                  className="btn btn-primary px-4 py-2 ms-lg-3"
-                  style={{ backgroundColor: "#00b074" }}
-                >
-                  Profile <i className="ms-2"></i>
-                </Link>
-                <Link
-                  to="/"
-                  className="btn btn-danger px-4 py-2 ms-lg-3"
-                  onClick={UserLogout}
-                >
-                  Logout <i className="ms-2"></i>
-                </Link>
+            <div className="ms-5 me-5">
+              <div className="text-center">
+                {isAuthenticated ? (
+                  <div className="d-flex align-items-center gap-4 justify-content-center justify-content-sm-start">
+                    <div className="nav-item dropdown">
+                      <NavLink
+                        className="nav-link dropdown-toggle"
+                        to="#"
+                        id="accountDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <div
+                          className="d-flex align-items-center justify-content-center rounded-circle btn-bg text-white"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            fontSize: "20px",
+                          }}
+                        >
+                          {String(info.username)[0].toUpperCase()}
+                        </div>
+                      </NavLink>
+                      <ul
+                        className="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="accountDropdown"
+                      >
+                        {userrole === "Employer" ? (
+                          <>
+                            <li>
+                              <NavLink className="dropdown-item" to="/profile">
+                                <FontAwesomeIcon
+                                  icon={faUser}
+                                  className="me-2"
+                                />
+                                Dashboard
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink className="dropdown-item" to="/post_job">
+                                <FontAwesomeIcon
+                                  icon={faBriefcase}
+                                  className="me-2"
+                                />
+                                Post Job
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className="dropdown-item"
+                                to="/"
+                                onClick={UserLogout}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faRightToBracket}
+                                  className="me-2"
+                                />
+                                Logout
+                              </NavLink>
+                            </li>
+                          </>
+                        ) : userrole === "Job Seeker" ? (
+                          <>
+                            <li>
+                              <NavLink className="dropdown-item" to="/profile">
+                                <FontAwesomeIcon
+                                  icon={faUser}
+                                  className="me-2"
+                                />
+                                Dashboard
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className="dropdown-item"
+                                to="/applied_jobs"
+                              >
+                                <FontAwesomeIcon
+                                  icon={faBriefcase}
+                                  className="me-2"
+                                />
+                                Applied Job
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className="dropdown-item"
+                                to="/"
+                                onClick={UserLogout}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faRightToBracket}
+                                  className="me-2"
+                                />
+                                Logout
+                              </NavLink>
+                            </li>
+                          </>
+                        ) : null}
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <Link
+                      to="/login"
+                      className="btn btn-primary px-4 py-2 ms-lg-3"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="btn btn-success px-4 py-2 ms-lg-3"
+                    >
+                      Signup
+                    </Link>
+                  </div>
+                )}
               </div>
-            ) : isAuthenticated && userrole === "Job Seeker" ? (
-              <div>
-                <Link
-                  to="/seeker_profile"
-                  className="btn btn-success px-4 py-2 ms-lg-3"
-                >
-                  Profile <i className="ms-2"></i>
-                </Link>
-                <Link
-                  to="/"
-                  className="btn btn-danger px-4 py-2 ms-lg-3"
-                  onClick={UserLogout}
-                >
-                  Logout <i className="ms-2"></i>
-                </Link>
-              </div>
-            ) : (
-              <>
-                <Link to="/login" className="btn btn-primary px-4 py-2 ms-lg-3">
-                  Login
-                </Link>
-                <Link
-                  to="/signup"
-                  className="btn btn-success px-4 py-2 ms-lg-3"
-                >
-                  Signup
-                </Link>
-              </>
-            )}
+            </div>
           </div>
         </div>
       </nav>

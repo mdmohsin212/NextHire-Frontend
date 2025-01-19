@@ -54,6 +54,44 @@ export const JobApplication = (event, job_id) => {
   }
 };
 
+
+export const PasswordChangeHandel = (event) => {
+  event.preventDefault();
+  const old_password = getData("previousPassword");
+  const new_password = getData("Password");
+  const new_password2 = getData("password2");
+  const userid = localStorage.getItem("user_id");
+
+  if (new_password != new_password2) {
+    toast.error("New passwords do not match");
+    return;
+  }
+  const data = {
+    old_password,
+    new_password,
+  };
+
+  fetch(
+    `https://nexthire-backend.onrender.com/user/change_password/${userid}/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success(data.message);
+      }
+    });
+};
+
+
 export const getData = (id) => {
   const data = document.getElementById(id).value;
   return data;

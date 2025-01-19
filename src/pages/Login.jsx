@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div class="sign-in mt-5 w-75 h-75 m-auto shadow-lg p-4 mb-5 bg-body-tertiary rounded-4">
+      <div class="sign-in mt-5 w-75 h-75 m-auto p-4 mb-5 rounded-4">
         <div class="row">
           <div class="col-md-6">
             <div class="signin-form">
@@ -60,7 +60,7 @@ const Login = () => {
           </div>
           <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="images/signin-image.jpg"
+              src="images/login.svg"
               class="img-fluid rounded-3 w-50"
               alt="Sign in illustration"
             />
