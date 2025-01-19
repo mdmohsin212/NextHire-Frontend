@@ -113,7 +113,7 @@ const Contact = () => {
                 The phrasal sequence of the is now so that <br /> many campaign
                 and benefit
               </p>
-              <p className="mb-0 fw-bold bg">siam.mohsin@gmail.com</p>
+              <p className="mb-0 fw-bold bg">siam.mohsin2005@gmail.com</p>
             </div>
           </div>
           <div className="col-md-4">
