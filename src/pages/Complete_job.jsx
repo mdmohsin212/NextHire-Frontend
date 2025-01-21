@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
 import ProfileNav from "./Side_nav";
-import { Link } from "react-router-dom";
 
-const SeekerProfile = () => {
+const CompleteJob = () => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const id = parseInt(localStorage.getItem("user_id"));
+  const id = localStorage.getItem("user_id");
 
   useEffect(() => {
     fetch(
@@ -15,7 +13,8 @@ const SeekerProfile = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setApplications(data);
+        setApplications(data.filter((job) => job.is_complete === true));
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -36,7 +35,7 @@ const SeekerProfile = () => {
         <div className="container-fluid mt-4 col-12 col-md-10 pb-5">
           <div className="w-100">
             <h2 className="text-center pt-3 pb-3 text-success">
-              My Applications
+              Complete Applications
             </h2>
             <hr />
             {loading ? (
@@ -61,33 +60,36 @@ const SeekerProfile = () => {
                     {applications.map((application) => (
                       <tr key={application.id}>
                         <td>{application.job.title}</td>
-                        <td>
-                          {application.job.loaction}
-                        </td>
+                        <td>{application.job.loaction}</td>
                         <td className="d-none d-md-table-cell">
                           {application.job.job_type}
                         </td>
                         <td>
-                          <span
-                            className={`badge text-white ${
-                              application.status === "Approved"
-                                ? "bg-success"
-                                : application.status === "Rejected"
-                                ? "bg-danger"
-                                : "bg-secondary"
-                            }`}
-                          >
+                          <span className="badge bg-success text-white">
                             {application.status}
                           </span>
                         </td>
                         <td>
-                          <Link
-                            to={`/job_details/${application.job.id}`}
-                            className="btn btn-primary"
-                            style={{ backgroundColor: "#00b074" }}
-                          >
-                            View Job
-                          </Link>
+                          {application.is_complete ? (
+                            <p
+                              className="bg-success rounded-pill shadow-sm px-3 py-1 text-white d-inline-block"
+                              style={{
+                                fontSize: "0.9rem",
+                                margin: 0,
+                                maxWidth: "fit-content",
+                              }}
+                            >
+                              Complete
+                            </p>
+                          ) : application.task && application.final_dateline ? (
+                            <button
+                              className="btn btn-primary"
+                              style={{ backgroundColor: "#00b074" }}
+                              onClick={() => setJob(application)}
+                            >
+                              Submit Job
+                            </button>
+                          ) : null}
                         </td>
                       </tr>
                     ))}
@@ -95,7 +97,9 @@ const SeekerProfile = () => {
                 </table>
               </div>
             ) : (
-              <p className="text-center mt-5">No applications found.</p>
+              <p className="text-center mt-5">
+                No Complete applications found.
+              </p>
             )}
           </div>
         </div>
@@ -105,4 +109,4 @@ const SeekerProfile = () => {
   );
 };
 
-export default SeekerProfile;
+export default CompleteJob;

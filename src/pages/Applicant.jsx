@@ -25,38 +25,41 @@ const Applicant = () => {
       });
   }, [job_id]);
 
-const handleStatusChange = (newStatus) => {
-  if (selectedApplicant) {
-    setApplicants((prevApplicants) =>
-      prevApplicants.map((applicant) =>
+  const handleStatusChange = (newStatus) => {
+    if (selectedApplicant) {
+      const updatedApplicants = applicants.map((applicant) =>
         applicant.id === selectedApplicant.id
           ? {
               ...applicant,
               candidate: { ...applicant.candidate, status: newStatus },
             }
           : applicant
+      );
+      setApplicants(updatedApplicants);
+
+      const data = {
+        status: newStatus,
+        applicant_name: selectedApplicant.candidate.name,
+        employer: selectedApplicant.employer,
+        job: selectedApplicant.job,
+      };
+
+      fetch(
+        `https://nexthire-backend.onrender.com/job/applied_job/${selectedApplicant.id}/`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
       )
-    );
-    setSelectedApplicant(null);
-    const data = {
-      status: newStatus,
-      applicant_name: selectedApplicant.applicant_name,
-      employer: selectedApplicant.employer,
-      job: selectedApplicant.job,
-    };
-    fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/${selectedApplicant.id}/`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => window.location.href = `/applicant_list/${job_id}`)
-      .catch((error) => console.error("Error:", error));
-  }
-};
+        .then((res) => res.json())
+        .then(() => {
+          setSelectedApplicant(null);
+          window.location.href = "/choisen_candidate";
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  };
 
   return (
     <div className="d-flex flex-column vh-100">
@@ -71,62 +74,59 @@ const handleStatusChange = (newStatus) => {
         ) : applicants.length === 0 ? (
           <p className="text-center text-muted">No applicants for this job.</p>
         ) : (
-          <div className="row">
-            {applicants.map((applicantData) => (
-              <div className="col-md-6 mb-4" key={applicantData.id}>
-                <div className="card shadow-sm">
-                  <div className="card-body">
-                    <h4 className="card-title bg">
-                      {applicantData.candidate.name}
-                    </h4>
-                    <p className="card-text mb-1">
-                      <strong>Email: </strong>
-                      {applicantData.candidate.email}
-                    </p>
-                    <p className="card-text mb-1">
-                      <strong>Website: </strong>
-                      <a
-                        href={applicantData.candidate.website_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {applicantData.candidate.website_url}
-                      </a>
-                    </p>
-                    <p className="card-text mb-1">
-                      <strong>Status: </strong>
+          <div>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Job Title</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {applicants.map((applicant) => (
+                  <tr key={applicant.id}>
+                    <th scope="row">{applicant.candidate.name}</th>
+                    <td>{applicant.job.title}</td>
+                    <td>
                       <span
-                        className={`badge ${
-                          applicantData.status === "Approved"
+                        className={`badge text-white ${
+                          applicant.status === "Approved"
                             ? "bg-success"
-                            : applicantData.status === "Rejected"
+                            : applicant.status === "Rejected"
                             ? "bg-danger"
                             : "bg-secondary"
                         }`}
                       >
-                        {applicantData.status}
+                        {applicant.status}
                       </span>
-                    </p>
-                    <button
-                      className="btn btn-outline-info mt-2"
-                      onClick={() => setSelectedApplicant(applicantData)}
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
+                    </td>
+                    <td>
+                      {applicant.status === "Approved" ? (
+                        <span className="text-success">
+                          <b>Application Approved</b>
+                        </span>
+                      ) : (
+                        <button
+                          className="btn btn-outline-success"
+                          onClick={() => setSelectedApplicant(applicant)}
+                        >
+                          View Details
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
 
       {selectedApplicant && (
-        <div className="modal show d-block" tabIndex="-1" role="dialog">
-          <div
-            className="modal-dialog modal-lg modal-dialog-centered"
-            role="document"
-          >
+        <div className="modal show d-block">
+          <div className="modal-dialog modal-lg modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Applicant Details</h5>
@@ -139,17 +139,16 @@ const handleStatusChange = (newStatus) => {
               </div>
               <div className="modal-body">
                 <p>
-                  <strong>Name : </strong> {selectedApplicant.candidate.name}
+                  <strong>Name: </strong> {selectedApplicant.candidate.name}
                 </p>
                 <p>
-                  <strong>Email : </strong> {selectedApplicant.candidate.email}
+                  <strong>Email: </strong> {selectedApplicant.candidate.email}
                 </p>
                 <p>
-                  <strong>Letter : </strong>{" "}
-                  <b>"{selectedApplicant.candidate.letter}"</b>
+                  <strong>Letter: </strong> {selectedApplicant.candidate.letter}
                 </p>
                 <p>
-                  <strong>Website : </strong>
+                  <strong>Website: </strong>
                   <a
                     href={selectedApplicant.candidate.website_url}
                     target="_blank"
@@ -159,31 +158,29 @@ const handleStatusChange = (newStatus) => {
                   </a>
                 </p>
                 <p>
-                  <strong>Applied Date : </strong>{" "}
+                  <strong>Applied Date: </strong>{" "}
                   {new Date(
                     selectedApplicant.candidate.applied_date
                   ).toLocaleDateString()}
                 </p>
                 <p>
-                  <strong>CV : </strong>
+                  <strong>CV: </strong>
                   <a
                     href={selectedApplicant.candidate.cv}
                     download
-                    className="btn btn-success"
-                    rel="noopener noreferrer"
+                    className="btn btn-success text-white"
                   >
                     Download CV
                   </a>
                 </p>
-
                 <div className="mb-3">
                   <label htmlFor="status" className="form-label">
-                    Update Status :
+                    Update Status:
                   </label>
                   <select
                     id="status"
                     className="form-select"
-                    value={selectedApplicant.candidate.status || "Pending"}
+                    value={selectedApplicant.candidate.status}
                     onChange={(e) =>
                       setSelectedApplicant({
                         ...selectedApplicant,
@@ -208,7 +205,7 @@ const handleStatusChange = (newStatus) => {
                   Close
                 </button>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-success"
                   onClick={() =>
                     handleStatusChange(selectedApplicant.candidate.status)
                   }

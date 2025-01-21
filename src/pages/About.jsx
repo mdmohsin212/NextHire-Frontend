@@ -85,7 +85,7 @@ const About = () => {
               </p>
 
               {location.pathname === "/" ? (
-                <a className="btn btn-primary py-3 px-5 mt-3" href="#">
+                <a className="btn btn-success py-3 px-5 mt-3" href="#">
                   Learn More
                 </a>
               ) : null}
@@ -94,7 +94,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="mt-5 mb-5 statistics-section">
+      <div className="mb-3 statistics-section">
         <div className="container text-center">
           <div className="row justify-content-around text-center gap-3">
             <div className="col-md-3 col-12">
@@ -112,8 +112,7 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      <div className="mt-4">
+      <div>
         <div className="text-center">
           <h3>Questions & Answers</h3>
           <p>

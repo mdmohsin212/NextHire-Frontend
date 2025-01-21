@@ -50,7 +50,7 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav mx-auto">
+            <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link
                   to="/"
@@ -85,7 +85,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className="ms-5 me-5">
+            <div className="ms-4 me-5">
               <div className="text-center">
                 {isAuthenticated ? (
                   <div className="d-flex align-items-center gap-4 justify-content-center justify-content-sm-start">
@@ -97,6 +97,9 @@ const Navbar = () => {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
+                        style={{
+                          background: "none",
+                        }}
                       >
                         <div
                           className="d-flex align-items-center justify-content-center rounded-circle btn-bg text-white"
@@ -192,13 +195,22 @@ const Navbar = () => {
                   <div>
                     <Link
                       to="/login"
-                      className="btn btn-primary px-4 py-2 ms-lg-3"
+                      className="btn px-4 py-2 ms-lg-3 mx-2"
+                      style={{
+                        backgroundColor: "#00b074",
+                        color: "#fff",
+                        border: "none",
+                      }}
                     >
                       Login
                     </Link>
                     <Link
                       to="/signup"
-                      className="btn btn-success px-4 py-2 ms-lg-3"
+                      className="btn btn-outline-success px-4 py-2 ms-lg-3"
+                      style={{
+                        color: "#00b074",
+                        borderColor: "#00b074",
+                      }}
                     >
                       Signup
                     </Link>

@@ -71,7 +71,15 @@ const Profile = () => {
                           <h6 className="mb-0">Username</h6>
                         </div>
                         <div className="col-sm-9">
-                          <p className="text-secondary">
+                          <p
+                            className="text-secondary"
+                            style={{
+                              backgroundColor: "#effdf5",
+                              padding: "10px",
+                              borderRadius: "5px",
+                              margin: "0",
+                            }}
+                          >
                             {info.username || "Username"}
                           </p>
                         </div>
@@ -82,7 +90,15 @@ const Profile = () => {
                           <h6 className="mb-0">First Name</h6>
                         </div>
                         <div className="col-sm-9">
-                          <p className="text-secondary">
+                          <p
+                            className="text-secondary"
+                            style={{
+                              backgroundColor: "#effdf5",
+                              padding: "10px",
+                              borderRadius: "5px",
+                              margin: "0",
+                            }}
+                          >
                             {info.first_name || "First Name"}
                           </p>
                         </div>
@@ -93,7 +109,15 @@ const Profile = () => {
                           <h6 className="mb-0">Last Name</h6>
                         </div>
                         <div className="col-sm-9">
-                          <p className="text-secondary">
+                          <p
+                            className="text-secondary"
+                            style={{
+                              backgroundColor: "#effdf5",
+                              padding: "10px",
+                              borderRadius: "5px",
+                              margin: "0",
+                            }}
+                          >
                             {info.last_name || "Last Name"}
                           </p>
                         </div>
@@ -104,7 +128,15 @@ const Profile = () => {
                           <h6 className="mb-0">Email</h6>
                         </div>
                         <div className="col-sm-9">
-                          <p className="text-secondary">
+                          <p
+                            className="text-secondary"
+                            style={{
+                              backgroundColor: "#effdf5",
+                              padding: "10px",
+                              borderRadius: "5px",
+                              margin: "0",
+                            }}
+                          >
                             {info.email || "example@domain.com"}
                           </p>
                         </div>
@@ -124,7 +156,15 @@ const Profile = () => {
                               className="form-control"
                             />
                           ) : (
-                            <p className="text-secondary">
+                            <p
+                              className="text-secondary"
+                              style={{
+                                backgroundColor: "#effdf5",
+                                padding: "10px",
+                                borderRadius: "5px",
+                                margin: "0",
+                              }}
+                            >
                               {info.phone || "empty"}
                             </p>
                           )}
@@ -145,7 +185,15 @@ const Profile = () => {
                               className="form-control"
                             />
                           ) : (
-                            <p className="text-secondary">
+                            <p
+                              className="text-secondary"
+                              style={{
+                                backgroundColor: "#effdf5",
+                                padding: "10px",
+                                borderRadius: "5px",
+                                margin: "0",
+                              }}
+                            >
                               {info.address || "empty"}
                             </p>
                           )}
@@ -155,7 +203,7 @@ const Profile = () => {
                       <div className="row">
                         <div className="col-sm-12">
                           <button
-                            className="btn btn-info"
+                            className="btn btn-success"
                             onClick={EditMode}
                           >
                             {isEditMode ? "Save" : "Edit"}

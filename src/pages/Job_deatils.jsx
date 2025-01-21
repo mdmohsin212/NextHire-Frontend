@@ -8,7 +8,7 @@ import {
   faMoneyBill,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { JobApplication } from "../components/job_application";
+import { JobApplication } from "../components/job_application";;
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,29 +19,27 @@ const JobDetails = () => {
 
   useEffect(() => {
     fetch(`https://nexthire-backend.onrender.com/job/list/${job_id}/`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch job details");
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         setJob(data);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
-        toast.error("Failed to load job details");
         setLoading(false);
       });
   }, [job_id]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
       <ToastContainer position="top-center" />
-      {job ? (
+      {loading ? (
+        <div className="d-flex justify-content-center py-5">
+          <div className="spinner-border text-dark" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : job ? (
         <div className="container-xxl py-5">
           <div className="container">
             <div className="row gy-5 gx-4">

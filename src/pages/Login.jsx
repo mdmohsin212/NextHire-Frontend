@@ -7,8 +7,8 @@ const Login = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div class="sign-in mt-5 w-75 h-75 m-auto p-4 mb-5 rounded-4">
-        <div class="row">
+      <div class="w-75 pt-5 mt-5 h-75 m-auto mb-5 rounded-4">
+        <div class="row pt-5 ps-2">
           <div class="col-md-6">
             <div class="signin-form">
               <h2 class="form-title text-center">Sign In</h2>

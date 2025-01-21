@@ -15,7 +15,7 @@ const Accordion = () => {
   return (
     <div>
       <div className="container">
-        <div id="accordion" className="py-5">
+        <div id="accordion">
           <div className="card border-0">
             <div className="card-header p-0 border-0" id="heading-1">
               <button

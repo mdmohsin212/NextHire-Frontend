@@ -15,7 +15,12 @@ const Home = () => {
         <div className="position-relative">
           <img
             className="w-100 img-fluid"
-            style={{ height: "650px" }}
+            style={{
+              height: "100vh",
+              maxHeight: "700px",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
             src="images/carousel-1.jpg"
             alt="Job Search Banner"
           />
@@ -32,7 +37,7 @@ const Home = () => {
                   </p>
                   <a
                     href="/jobs"
-                    className="btn btn-outline-info btn-lg text-white"
+                    className="btn btn-outline-success btn-lg text-white"
                   >
                     Find Job
                   </a>

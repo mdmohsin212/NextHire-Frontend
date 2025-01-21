@@ -6,45 +6,79 @@ class ProfileNav extends Component {
     const role = localStorage.getItem("role");
     return (
       <div
-        className="bg-light p-4 d-flex flex-column h-100"
+        className="bg-light d-flex flex-column h-100"
         style={{ width: "250px" }}
       >
-        <h4>My Profile</h4>
-        <hr />
-        <ul className="nav flex-column">
+        <ul className="nav flex-column text-start">
           <li className="nav-item">
             <NavLink
-              className="nav-link text-dark px-3 py-2 rounded"
+              className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+              activeClassName="active-link"
               to="/profile"
             >
               Account
             </NavLink>
           </li>
-          {role == "Job Seeker" ? (
-            <li className="nav-item">
-              <NavLink
-                className="nav-link text-dark px-3 py-2 rounded"
-                to="/applied_jobs"
-              >
-                Applied Job
-              </NavLink>
-            </li>
+          {role === "Job Seeker" ? (
+            <div>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+                  activeClassName="active-link"
+                  to="/applied_jobs"
+                >
+                  Applied Jobs
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+                  activeClassName="active-link"
+                  to="/running_job"
+                >
+                  Running Jobs
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+                  activeClassName="active-link"
+                  to="/complete_job"
+                >
+                  Complete Job
+                </NavLink>
+              </li>
+            </div>
           ) : (
-            <li className="nav-item">
-              <NavLink
-                className="nav-link text-dark px-3 py-2 rounded"
-                to="/employe_profile"
-              >
-                My Jobs
-              </NavLink>
-            </li>
+            <div>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+                  activeClassName="active-link"
+                  to="/employe_profile"
+                >
+                  <i className="bi bi-briefcase-fill me-2"></i> My Jobs
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-dark px-4 py-3 mb-2 rounded bg-white shadow-sm"
+                  activeClassName="active-link"
+                  to="/choisen_candidate"
+                >
+                  <i className="bi bi-briefcase-fill me-2"></i> Chosen
+                  Candidates
+                </NavLink>
+              </li>
+            </div>
           )}
           <li className="nav-item">
             <NavLink
-              className="nav-link text-dark px-3 py-2 rounded"
+              className="nav-link text-dark px-4 py-3 rounded bg-white shadow-sm"
+              activeClassName="active-link"
               to="/change_password"
             >
-              Change Password
+              <i className="bi bi-lock me-2"></i> Change Password
             </NavLink>
           </li>
         </ul>

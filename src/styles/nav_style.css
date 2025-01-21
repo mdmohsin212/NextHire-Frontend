@@ -2,6 +2,10 @@
   color: #00b074;
 }
 
+.nav-link.dropdown-toggle::after {
+  display: none;
+}
+
 .bg {
   color: #00b074;
 }

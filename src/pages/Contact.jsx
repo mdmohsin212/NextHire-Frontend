@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 const Contact = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <div className="contact-container mt-5 w-75 h-75 m-auto p-4 mb-5 rounded-4">
+      <div className="contact-container mt-5 w-75 h-75 m-auto rounded-4">
         <div className="row">
           <div className="col-md-6">
             <div className="contact-form">
@@ -72,12 +72,12 @@ const Contact = () => {
           <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
               src="images/contact.svg"
-              className="img-fluid rounded-3 w-50"
+              className="img-fluid rounded-3 w-75"
               alt="Contact illustration"
             />
           </div>
         </div>
-        <div className="row g-4 mt-5 text-center">
+        <div className="row mt-2 text-center">
           <div className="col-md-4">
             <div className="d-flex flex-column align-items-center rounded p-3">
               <div

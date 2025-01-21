@@ -17,6 +17,9 @@ import SeekerProfile from "./pages/Seeker_profile";
 import ShowJob from "./pages/Job";
 import Profile from './pages/Profile';
 import ChangePassword from "./pages/Change_password";
+import RunningJob from './pages/Running_job';
+import ChoisenCandate from './pages/Choisen_candidate';
+import CompleteJob from './pages/Complete_job';
 
 function App() {
   return (
@@ -34,8 +37,11 @@ function App() {
         <Route path="/employe_profile" element={<EmployeProfile />} />
         <Route path="/applicant_list/:id" element={<Applicant />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/running_job" element={<RunningJob />} />
         <Route path="/applied_jobs" element={<SeekerProfile />} />
+        <Route path="/choisen_candidate" element={<ChoisenCandate />} />
         <Route path="/change_password" element={<ChangePassword />} />
+        <Route path="/complete_job" element={<CompleteJob />} />
       </Routes>
     </>
   );  

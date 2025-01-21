@@ -37,7 +37,7 @@ const Footer = () => {
                 icon={faMessage}
                 style={{ color: "#63E6BE", marginRight: "6px" }}
               />
-              siam.mohsin@gmail.com
+              siam.mohsin2005@gmail.com
             </p>
             <div className="d-flex pt-2">
               <a
