@@ -71,9 +71,8 @@ const SeekerProfile = () => {
         <div className="container-fluid mt-4 col-12 col-md-10 pb-5">
           <div className="w-100">
             <h2 className="text-center pt-3 pb-3 text-success">
-              Approved Applications
+              Running Applications
             </h2>
-            <hr />
             {loading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-dark" role="status">
@@ -122,9 +121,17 @@ const SeekerProfile = () => {
                 </table>
               </div>
             ) : (
-              <p className="text-center mt-5">
-                No approved applications found.
-              </p>
+              <div className="d-flex justify-content-center">
+                <img
+                  src="../images/no-data.svg"
+                  alt=""
+                  className="img-fluid"
+                  style={{
+                    width: "150px",
+                    height:"170px"
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

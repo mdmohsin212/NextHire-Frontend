@@ -113,7 +113,7 @@ const About = () => {
         </div>
       </div>
       <div>
-        <div className="text-center">
+        <div className="text-center pb-3">
           <h3>Questions & Answers</h3>
           <p>
             Search all the open positions on the web. Get your own personalized

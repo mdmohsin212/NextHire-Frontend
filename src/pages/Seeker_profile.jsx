@@ -38,7 +38,7 @@ const SeekerProfile = () => {
             <h2 className="text-center pt-3 pb-3 text-success">
               My Applications
             </h2>
-            <hr />
+
             {loading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-dark" role="status">
@@ -61,9 +61,7 @@ const SeekerProfile = () => {
                     {applications.map((application) => (
                       <tr key={application.id}>
                         <td>{application.job.title}</td>
-                        <td>
-                          {application.job.loaction}
-                        </td>
+                        <td>{application.job.loaction}</td>
                         <td className="d-none d-md-table-cell">
                           {application.job.job_type}
                         </td>
@@ -95,7 +93,17 @@ const SeekerProfile = () => {
                 </table>
               </div>
             ) : (
-              <p className="text-center mt-5">No applications found.</p>
+              <div className="d-flex justify-content-center">
+                <img
+                  src="../images/no-data.svg"
+                  alt=""
+                  className="img-fluid"
+                  style={{
+                    width: "150px",
+                    height: "200px",
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

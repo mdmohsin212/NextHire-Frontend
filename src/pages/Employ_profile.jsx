@@ -39,7 +39,7 @@ const EmployeProfile = () => {
         <div className="container-fluid mt-4 col-12 col-md-10 order-2 order-md-2 pb-5">
           <div className="p-3 m-auto">
             <h3 className="text-center p-2 fw-medium">My Jobs</h3>
-            <hr />
+           
 
             {loading ? (
               <div className="d-flex justify-content-center py-5">
