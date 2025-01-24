@@ -85,7 +85,7 @@ class ProfileNav extends Component {
               color: #343a40;
               margin-bottom: 5px;
               padding: 10px;
-              font-size:15px;
+              font-size: 20px;
               margin-left: -55px;
               border-radius: 6px;
               text-decoration: none;
