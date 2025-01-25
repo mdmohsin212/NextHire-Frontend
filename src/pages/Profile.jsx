@@ -30,8 +30,8 @@ const Profile = () => {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <div className="d-flex flex-grow-1 flex-wrap flex-column flex-md-row">
-        <div className="col-12 col-md-2 order-1 order-md-1 d-flex justify-content-center align-items-center text-center bg-light py-3">
+      <div className="d-flex flex-grow-1 flex-wrap flex-column flex-md-row p-0 m-0">
+        <div className="order-1 order-md-1 d-flex justify-content-center align-items-center text-start bg-light py-1">
           <ProfileNav />
         </div>
 

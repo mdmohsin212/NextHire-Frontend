@@ -25,14 +25,12 @@ const CompleteJob = () => {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <div className="d-flex flex-grow-1 flex-wrap">
-        <div className="col-12 col-md-2 bg-light py-3">
-          <div className="d-flex justify-content-center align-items-center text-center">
-            <ProfileNav />
-          </div>
+      <div className="d-flex flex-grow-1 flex-wrap flex-column flex-md-row p-0 m-0">
+        <div className="order-1 order-md-1 d-flex justify-content-center align-items-center text-start bg-light py-1">
+          <ProfileNav />
         </div>
 
-        <div className="container-fluid mt-4 col-12 col-md-10 pb-5">
+        <div className="container-fluid mt-4 col-12 col-md-10 pb-5 order-2 order-md-2">
           <div className="w-100">
             <h2 className="text-center pt-3 pb-3 text-success">
               Complete Applications

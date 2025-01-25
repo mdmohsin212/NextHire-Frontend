@@ -16,7 +16,7 @@ const JobPost = () => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <div className="w-75 m-auto">
+      <div className="w-75 m-auto mb-4">
         <h1 className="text-center p-3 bg">Post a new job</h1>
         <form method="post" encType="multipart/form-data">
           <div className="row g-3">

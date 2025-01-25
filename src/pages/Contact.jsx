@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 const Contact = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <div className="contact-container mt-5 w-75 h-75 m-auto rounded-4">
+      <div className="contact-container mt-5 w-75 h-75 m-auto rounded-4 mb-4">
         <div className="row">
           <div className="col-md-6">
             <div className="contact-form">
