@@ -6,6 +6,7 @@ import {
   faLocationCrosshairs,
   faClock,
   faMoneyBill,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { JobDeleteHandel } from "../components/job_post";
@@ -32,14 +33,13 @@ const EmployeProfile = () => {
   return (
     <>
       <div className="d-flex flex-column flex-md-row">
-        <div className="col-12 col-md-2 order-1 order-md-1 d-flex justify-content-center align-items-center text-center bg-light py-3">
+        <div className="order-1 order-md-1 d-flex justify-content-center align-items-center text-center bg-light py-1">
           <ProfileNav />
         </div>
 
         <div className="container-fluid mt-4 col-12 col-md-10 order-2 order-md-2 pb-5">
           <div className="p-3 m-auto">
             <h3 className="text-center p-2 fw-medium">My Jobs</h3>
-           
 
             {loading ? (
               <div className="d-flex justify-content-center py-5">
@@ -96,6 +96,7 @@ const EmployeProfile = () => {
                           style={{ backgroundColor: "#00b074" }}
                           to={`/applicant_list/${item.id}`}
                         >
+                          <FontAwesomeIcon icon={faUsers} className="me-2" />
                           See Applicant
                         </Link>
                         <Link

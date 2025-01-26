@@ -17,9 +17,9 @@ class ProfileNav extends Component {
     return (
       <div className="profile-nav d-flex flex-column h-100">
         <ul
-          className="nav flex-column text-start p-1"
+          className="nav flex-column text-start p-2"
           style={{
-            width: "230px",
+            width: "240px",
           }}
         >
           <li className="nav-item">
@@ -43,7 +43,7 @@ class ProfileNav extends Component {
                 >
                   <FontAwesomeIcon
                     icon={faFileAlt}
-                    className="me-2 text-info"
+                    className="me-2"
                   />
                   Applied Jobs
                 </NavLink>
@@ -56,7 +56,7 @@ class ProfileNav extends Component {
                 >
                   <FontAwesomeIcon
                     icon={faTasks}
-                    className="me-2 text-success"
+                    className="me-2"
                   />
                   Running Jobs
                 </NavLink>
@@ -69,7 +69,7 @@ class ProfileNav extends Component {
                 >
                   <FontAwesomeIcon
                     icon={faCheckCircle}
-                    className="me-2 text-success"
+                    className="me-2"
                   />
                   Complete Jobs
                 </NavLink>

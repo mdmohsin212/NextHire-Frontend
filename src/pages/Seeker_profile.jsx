@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
 import ProfileNav from "./Side_nav";
 import { Link } from "react-router-dom";
+import {faBriefcase} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SeekerProfile = () => {
   const [applications, setApplications] = useState([]);
@@ -82,6 +84,10 @@ const SeekerProfile = () => {
                             className="btn btn-primary"
                             style={{ backgroundColor: "#00b074" }}
                           >
+                            <FontAwesomeIcon
+                              icon={faBriefcase}
+                              className="me-2"
+                            />
                             View Job
                           </Link>
                         </td>

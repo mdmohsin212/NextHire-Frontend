@@ -67,7 +67,7 @@ const ChoisenCandate = () => {
     <div className="d-flex flex-column min-vh-100">
       <ToastContainer position="top-center" />
       <div className="d-flex flex-grow-1 flex-wrap">
-        <div className="col-12 col-md-2 bg-light py-3">
+        <div className="bg-light py-1">
           <div className="d-flex justify-content-center align-items-center text-center">
             <ProfileNav />
           </div>
