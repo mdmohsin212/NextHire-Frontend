@@ -71,3 +71,13 @@
         padding: 40px 55px;
     }
 }
+
+.custom-img {
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .custom-img {
+    height: 740px;
+  }
+}

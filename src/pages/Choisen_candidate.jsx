@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import ProfileNav from "./Side_nav";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaTasks, FaCheckCircle, FaEye } from "react-icons/fa";
 
 const ChoisenCandate = () => {
   const [applicants, setApplicants] = useState([]);
@@ -66,13 +67,12 @@ const ChoisenCandate = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
       <ToastContainer position="top-center" />
-      <div className="d-flex flex-grow-1 flex-wrap">
-        <div className="bg-light py-1">
-          <div className="d-flex justify-content-center align-items-center text-center">
-            <ProfileNav />
-          </div>
+      <div className="d-flex flex-grow-1 flex-wrap flex-column flex-md-row p-0 m-0">
+        <div className="order-1 order-md-1 d-flex justify-content-center align-items-center text-start bg-light py-1">
+          <ProfileNav />
         </div>
-        <div className="container-fluid mt-4 col-12 col-md-10 pb-5">
+
+        <div className="container-fluid mt-4 col-12 col-md-10 order-2 order-md-2 pb-5 pt-md-2">
           <div className="w-100">
             <h2 className="text-center pt-3 pb-3 text-success">
               All Candidates
@@ -104,27 +104,29 @@ const ChoisenCandate = () => {
                         <td>
                           {application.is_complete === true ? (
                             <button
-                              className="btn btn-primary"
+                              className="btn btn-primary d-flex align-items-center"
                               style={{ backgroundColor: "#00b074" }}
                               onClick={() => handleAssignTask(application)}
                               data-bs-toggle="modal"
                               data-bs-target="#assignTaskModal2"
                             >
-                              View Submission
+                              <FaEye className="me-2" /> View Submission
                             </button>
                           ) : application.is_jobAssign === true ? (
                             <span className="text-success">
-                              <button className="btn btn-success btn-sm disabled">Task Assigned</button>
+                              <button className="btn btn-success btn-sm d-flex align-items-center disabled">
+                                <FaCheckCircle className="me-2" /> Task Assigned
+                              </button>
                             </span>
                           ) : (
                             <button
-                              className="btn btn-primary"
+                              className="btn btn-primary d-flex align-items-center"
                               style={{ backgroundColor: "#00b074" }}
                               onClick={() => handleAssignTask(application)}
                               data-bs-toggle="modal"
                               data-bs-target="#assignTaskModal"
                             >
-                              Assign
+                              <FaTasks className="me-2" /> Assign
                             </button>
                           )}
                         </td>

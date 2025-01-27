@@ -6,6 +6,7 @@ import {
   faLocationCrosshairs,
   faClock,
   faMoneyBill,
+  faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, Link } from "react-router-dom";
 import Footer from "./Footer";
@@ -142,9 +143,13 @@ const ShowJob = () => {
                       <div className="d-flex mb-3 mt-3 gap-2">
                         <Link
                           to={`/job_details/${item.id}`}
-                          className="btn btn-primary"
+                          className="btn btn-primary d-flex align-items-center"
                           style={{ backgroundColor: "#00b074" }}
                         >
+                          <FontAwesomeIcon
+                            icon={faUserTie}
+                            style={{ marginRight: "8px" }}
+                          />
                           Apply Now
                         </Link>
                       </div>

@@ -11,33 +11,28 @@ const Home = () => {
   return (
     <div>
       <ToastContainer position="top-center" />
-      <div className="container-fluid p-1">
+      <div className="container-fluid p-md-1 p-2">
         <div className="position-relative">
           <img
-            className="w-100 img-fluid"
-            src="/images/hero.jpg"
-            style={{
-              height: "730px",
-              maxHeight: "100vh",
-              objectPosition: "center",
-            }}
+            className="w-100 img-fluid custom-img"
+            src="/images/sub.jpg"
             alt="Job Search Banner"
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center bg-dark bg-opacity-50">
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-8">
-                  <h1 className="display-3 text-white mb-4">
+                  <h1 className="display-3 text-white mb-4 pt-md-2 pt-2">
                     Find The Perfect Job That You Deserve
                   </h1>
-                  <p className="fs-5 text-white mb-4">
+                  <p className="fs-5 text-white mb-4 d-none d-md-block">
                     Empower your professional growth with our curated job
                     listings tailored to your expertise.
                   </p>
                   <a
                     href="/jobs"
                     className="btn btn-outline-success btn-lg text-white"
-                    style={{ border: "0.01px solid white"}}
+                    style={{ border: "0.01px solid white" }}
                   >
                     Find Job
                   </a>
