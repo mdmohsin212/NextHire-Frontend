@@ -15,7 +15,7 @@ const Home = () => {
         <div className="position-relative">
           <img
             className="img-fluid custom-img"
-            src="/images/sub.jpg"
+            src="/images/sub2.jpg"
             alt="Job Search Banner"
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center bg-dark bg-opacity-50">
