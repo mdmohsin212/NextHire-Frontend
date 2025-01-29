@@ -78,6 +78,7 @@
 
 @media (min-width: 768px) {
   .custom-img {
-    height: 740px;
+    width: 100%;
+    object-fit: fill;
   }
 }

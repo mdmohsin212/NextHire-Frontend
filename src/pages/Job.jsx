@@ -41,9 +41,8 @@ const ShowJob = () => {
     <div>
       <div className="container-xxl py-5">
         <div className="container">
-          <h1 className="text-center mb-5">Job Listing</h1>
+          <h1 className="text-center mb-3">Job Listing</h1>
           <div className="mb-4 text-center">
-            <h5 className="form-label pb-2">Filter by Job Type</h5>
             <div
               className="btn-group pb-2 pt-2"
               role="group"
@@ -158,7 +157,7 @@ const ShowJob = () => {
                 </div>
               ))}
               {location.pathname === "/" && (
-                <div className="text-end mt-4">
+                <div className="text-center mt-4">
                   <Link
                     to="/jobs"
                     className="bg bg-success btn-lg px-4 text-decoration-none rounded-pill shadow p-1 text-white"

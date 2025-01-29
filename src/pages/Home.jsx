@@ -14,7 +14,7 @@ const Home = () => {
       <div className="container-fluid p-md-1 p-2">
         <div className="position-relative">
           <img
-            className="w-100 img-fluid custom-img"
+            className="img-fluid custom-img"
             src="/images/sub.jpg"
             alt="Job Search Banner"
           />
