@@ -64,6 +64,30 @@ const ChoisenCandate = () => {
     }
   };
 
+
+  const handleJobStatus = (applicantId, status) => {
+    fetch(
+      `https://nexthire-backend.onrender.com/job/applied_job/${applicantId}/`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ submit_status: status }),
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          window.location.href = "/choisen_candidate";
+        } else {
+          toast.error(`Failed to update job status.`);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Something went wrong.");
+      });
+  };
+
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <ToastContainer position="top-center" />
@@ -99,7 +123,9 @@ const ChoisenCandate = () => {
                     {applicants.map((application) => (
                       <tr key={application.id}>
                         <td>{application.candidate.name}</td>
-                        <td>{application.job.title}</td>
+                        <td className="d-none d-md-block">
+                          {application.job.title}
+                        </td>
                         <td>{application.job.job_type}</td>
                         <td>
                           {application.is_complete === true ? (
@@ -110,7 +136,7 @@ const ChoisenCandate = () => {
                               data-bs-toggle="modal"
                               data-bs-target="#assignTaskModal2"
                             >
-                              <FaEye className="me-2" /> View Submission
+                              <FaEye className="me-2" /> View
                             </button>
                           ) : application.is_jobAssign === true ? (
                             <span className="text-success">
@@ -128,6 +154,45 @@ const ChoisenCandate = () => {
                             >
                               <FaTasks className="me-2" /> Assign
                             </button>
+                          )}
+                        </td>
+                        <td>
+                          {application.submit_status == "Pending" ? (
+                            <div className="d-flex gap-2 flex-wrap">
+                              <button
+                                className="btn btn-success"
+                                onClick={() =>
+                                  handleJobStatus(application.id, "Approved")
+                                }
+                              >
+                                Approved
+                              </button>
+                              <button
+                                className="btn btn-danger"
+                                onClick={() =>
+                                  handleJobStatus(application.id, "Rejected")
+                                }
+                              >
+                                Rejected
+                              </button>
+                            </div>
+                          ) : (
+                            <p
+                              className={`badge text-white rounded-pill shadow-sm px-3 py-1 d-inline-block ${
+                                application.submit_status === "Approved"
+                                  ? "bg-success"
+                                  : application.submit_status === "Rejected"
+                                  ? "bg-danger"
+                                  : "bg-secondary"
+                              }`}
+                              style={{
+                                fontSize: "0.9rem",
+                                margin: 0,
+                                maxWidth: "fit-content",
+                              }}
+                            >
+                              {application.submit_status}
+                            </p>
                           )}
                         </td>
                       </tr>

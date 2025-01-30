@@ -50,7 +50,6 @@ const CompleteJob = () => {
                       <th>Location</th>
                       <th className="d-none d-md-table-cell">Job Type</th>
                       <th>Status</th>
-                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -62,21 +61,22 @@ const CompleteJob = () => {
                           {application.job.job_type}
                         </td>
                         <td>
-                          <span className="badge bg-success text-white">
-                            {application.status}
-                          </span>
-                        </td>
-                        <td>
                           {application.is_complete ? (
                             <p
-                              className="bg-success rounded-pill shadow-sm px-3 py-1 text-white d-inline-block"
+                              className={`badge text-white rounded-pill shadow-sm px-3 py-1 d-inline-block ${
+                                application.submit_status === "Approved"
+                                  ? "bg-success"
+                                  : application.submit_status === "Rejected"
+                                  ? "bg-danger"
+                                  : "bg-secondary"
+                              }`}
                               style={{
                                 fontSize: "0.9rem",
                                 margin: 0,
                                 maxWidth: "fit-content",
                               }}
                             >
-                              Complete
+                              {application.submit_status}
                             </p>
                           ) : application.task && application.final_dateline ? (
                             <button

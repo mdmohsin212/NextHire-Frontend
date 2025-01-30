@@ -159,6 +159,9 @@ const SeekerProfile = () => {
                 <p>
                   <b>Task :</b> "{selectedJob.task}"
                 </p>
+                <p>
+                  <b>Dateline :</b> "{selectedJob.final_dateline}"
+                </p>
                 <div className="mb-3 pt-2">
                   <label htmlFor="Text" className="form-label">
                     Submission Details:

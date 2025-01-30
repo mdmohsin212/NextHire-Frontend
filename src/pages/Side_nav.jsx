@@ -120,7 +120,7 @@ class ProfileNav extends Component {
           {`
         .profile-nav .nav-link-item {
             color: black;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
             padding: 15px 20px;
             font-size: 18px;
             border-radius: 8px;
