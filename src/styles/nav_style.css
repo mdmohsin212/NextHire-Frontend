@@ -25,13 +25,13 @@
         position: relative;
         display: block;
         padding:8px 0 8px 50px;
-        background: #6B6B6B;
+        border: 1px solid #00b074 !important;
+        background: white;
         border-radius: 8px;
         overflow: hidden;
         text-decoration: none;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 700;
+        color: black;
+        font-weight: 600;
         width: 100%;
         text-align: left;
         transition: all .4s ease-in-out; 
@@ -58,9 +58,11 @@
     }
     [aria-expanded="true"]{
         background: #24b365;
+        
         color: #000;
         i {
             color: #000;
+            
             background: #24b365;
           &:before{
                 content: "\f068" ;
@@ -68,7 +70,8 @@
         }
     }
     .accordion-body{
-        padding: 40px 55px;
+        padding: 20px 20px;
+        
     }
 }
 

@@ -35,11 +35,11 @@ const ShowJob = () => {
     setFilter({ job_type: jobType });
   };
 
-  const showingJobs = location.pathname === "/" ? jobs.slice(0, 4) : jobs;
+  const showingJobs = location.pathname === "/" ? jobs.slice(0, 3) : jobs;
 
   return (
     <div>
-      <div className="container-xxl py-5">
+      <div className="container-xxl py-3">
         <div className="container">
           <h1 className="text-center mb-3">Job Listing</h1>
           <div className="mb-4 text-center">

@@ -130,7 +130,7 @@ const ChoisenCandate = () => {
                         <td>
                           {application.is_complete === true ? (
                             <button
-                              className="btn btn-primary d-flex align-items-center"
+                              className="btn btn-primary d-flex align-items-center btn-sm"
                               style={{ backgroundColor: "#00b074" }}
                               onClick={() => handleAssignTask(application)}
                               data-bs-toggle="modal"
@@ -146,7 +146,7 @@ const ChoisenCandate = () => {
                             </span>
                           ) : (
                             <button
-                              className="btn btn-primary d-flex align-items-center"
+                              className="btn btn-primary d-flex align-items-center btn-sm"
                               style={{ backgroundColor: "#00b074" }}
                               onClick={() => handleAssignTask(application)}
                               data-bs-toggle="modal"
@@ -157,7 +157,8 @@ const ChoisenCandate = () => {
                           )}
                         </td>
                         <td>
-                          {application.submit_status == "Pending" ? (
+                          {application.submit_status == "Pending" &&
+                          applicants.is_jobAssign == true ? (
                             <div className="d-flex gap-2 flex-wrap">
                               <button
                                 className="btn btn-success"
@@ -176,14 +177,14 @@ const ChoisenCandate = () => {
                                 Rejected
                               </button>
                             </div>
-                          ) : (
+                          ) : application.is_complete ? (
                             <p
-                              className={`badge text-white rounded-pill shadow-sm px-3 py-1 d-inline-block ${
+                              className={`badge px-3 py-1 ${
                                 application.submit_status === "Approved"
-                                  ? "bg-success"
+                                  ? "text-success"
                                   : application.submit_status === "Rejected"
-                                  ? "bg-danger"
-                                  : "bg-secondary"
+                                  ? "text-danger"
+                                  : "text-secondary"
                               }`}
                               style={{
                                 fontSize: "0.9rem",
@@ -191,9 +192,15 @@ const ChoisenCandate = () => {
                                 maxWidth: "fit-content",
                               }}
                             >
-                              {application.submit_status}
+                              <span>
+                                {application.submit_status === "Approved"
+                                  ? "Completed"
+                                  : application.submit_status === "Rejected"
+                                  ? "Rejected"
+                                  : null}
+                              </span>
                             </p>
-                          )}
+                          ) : null}
                         </td>
                       </tr>
                     ))}

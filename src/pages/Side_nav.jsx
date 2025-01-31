@@ -24,8 +24,9 @@ class ProfileNav extends Component {
         >
           <li className="nav-item">
             <NavLink
-              className="nav-link-item"
-              activeClassName="active-link-item"
+              className={({ isActive }) =>
+                isActive ? "nav-link-item active-link-item" : "nav-link-item"
+              }
               to="/profile"
             >
               <FontAwesomeIcon icon={faUser} className="me-2" />
@@ -37,40 +38,40 @@ class ProfileNav extends Component {
             <div>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link-item"
-                  activeClassName="active-link-item"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link-item active-link-item"
+                      : "nav-link-item"
+                  }
                   to="/applied_jobs"
                 >
-                  <FontAwesomeIcon
-                    icon={faFileAlt}
-                    className="me-2"
-                  />
+                  <FontAwesomeIcon icon={faFileAlt} className="me-2" />
                   Applied Jobs
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link-item"
-                  activeClassName="active-link-item"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link-item active-link-item"
+                      : "nav-link-item"
+                  }
                   to="/running_job"
                 >
-                  <FontAwesomeIcon
-                    icon={faTasks}
-                    className="me-2"
-                  />
+                  <FontAwesomeIcon icon={faTasks} className="me-2" />
                   Running Jobs
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link-item"
-                  activeClassName="active-link-item"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link-item active-link-item"
+                      : "nav-link-item"
+                  }
                   to="/complete_job"
                 >
-                  <FontAwesomeIcon
-                    icon={faCheckCircle}
-                    className="me-2"
-                  />
+                  <FontAwesomeIcon icon={faCheckCircle} className="me-2" />
                   Complete Jobs
                 </NavLink>
               </li>
@@ -79,8 +80,11 @@ class ProfileNav extends Component {
             <div>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link-item"
-                  activeClassName="active-link-item"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link-item active-link-item"
+                      : "nav-link-item"
+                  }
                   to="/employe_profile"
                 >
                   <FontAwesomeIcon
@@ -92,8 +96,11 @@ class ProfileNav extends Component {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link-item"
-                  activeClassName="active-link-item"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link-item active-link-item"
+                      : "nav-link-item"
+                  }
                   to="/choisen_candidate"
                 >
                   <FontAwesomeIcon
@@ -107,8 +114,9 @@ class ProfileNav extends Component {
           )}
           <li className="nav-item">
             <NavLink
-              className="nav-link-item"
-              activeClassName="active-link-item"
+              className={({ isActive }) =>
+                isActive ? "nav-link-item active-link-item" : "nav-link-item"
+              }
               to="/change_password"
             >
               <FontAwesomeIcon icon={faLock} className="me-2" />
@@ -131,6 +139,9 @@ class ProfileNav extends Component {
         .profile-nav .nav-link-item:hover {
             background-color: rgb(200, 242, 228);
             color: black;
+        }
+        .active-link-item {
+            background-color: rgb(200, 242, 228) !important;
         }
          `}
         </style>
