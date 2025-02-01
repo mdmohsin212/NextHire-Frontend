@@ -51,7 +51,7 @@ const Login = () => {
                 </div>
                 <a
                   href="/signup"
-                  class="d-block text-center mt-3 text-decoration-none"
+                  class="d-block text-center mt-3 text-decoration-none text-success"
                 >
                   Create an account
                 </a>

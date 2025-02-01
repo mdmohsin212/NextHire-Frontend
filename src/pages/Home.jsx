@@ -32,8 +32,7 @@ const Home = () => {
                   </p>
                   <a
                     href="/jobs"
-                    className="btn btn-outline-success btn-lg text-black"
-                    style={{ border: "0.01px solid black" }}
+                    className="btn btn-outline-success btn-lg text-black hero-btn"
                   >
                     Find Job
                   </a>
