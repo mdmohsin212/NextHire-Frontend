@@ -47,7 +47,7 @@ function App() {
           <Route path="/choisen_candidate" element={<ChoisenCandate />} />
           <Route path="/change_password" element={<ChangePassword />} />
           <Route path="/complete_job" element={<CompleteJob />} />
-          <Route path="/make_payment/:id/:job_id" element={<MakePayment />} />
+          <Route path="/make_payment/:id" element={<MakePayment />} />
           <Route path="/checkout/:id/:receiver/:job_id" element={<Checkout />} />
         </Routes>
       </JobProvider>

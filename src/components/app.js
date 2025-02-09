@@ -28,8 +28,8 @@ export const uniqueTransaction = (size = 10) => {
   return result;
 };
 
-export const CheckoutHandel = (event, salary, receiver) => {
-  event.preventDefault();
+export const CheckoutHandel = (e,salary, receiver, job_id) => {
+  e.preventDefault();
   const name = document.getElementById("Name").value;
   const email = document.getElementById("email").value;
   const address = document.getElementById("address").value;
@@ -45,6 +45,7 @@ export const CheckoutHandel = (event, salary, receiver) => {
     Order: false,
     total_amount: amount,
     sender: user_id,
+    job: Number(job_id),
     receiver: receiver,
     tran_id: uniqueTransaction(),
   };
@@ -64,7 +65,12 @@ export const CheckoutHandel = (event, salary, receiver) => {
               body: JSON.stringify(info),
             }
           )
-            .then((res) => res.json())
+            .then((res) => {
+              if (res.ok) {
+                window.location.href = `/make_payment/${salary}`;
+              }
+              return res.json();
+            })
             .catch((error) => console.error(error));
         } else {
           toast.error("Fill all the field for checkout.");
@@ -76,7 +82,12 @@ export const CheckoutHandel = (event, salary, receiver) => {
             headers: { "content-type": "application/json" },
             body: JSON.stringify(info),
           })
-            .then((res) => res.json())
+            .then((res) => {
+              if (res.ok) {
+                window.location.href = `/make_payment/${salary}`;
+              }
+              return res.json();
+            })
             .catch((error) => console.error(error));
         } else {
           toast.error("Fill all the field for checkout.");

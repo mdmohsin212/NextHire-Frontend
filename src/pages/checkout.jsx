@@ -1,18 +1,12 @@
 import React from 'react';
 import { CheckoutHandel } from '../components/app';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
     const { id, receiver, job_id } = useParams();
-    const navigate = useNavigate();
 
-    const handlPayment = (event) => {
-      event.preventDefault();
-      CheckoutHandel(event, id, receiver);
-      navigate(`/make_payment/${id}/${job_id}`);
-    };
     return (
       <div>
         <ToastContainer position="top-center" />
@@ -79,7 +73,7 @@ const Checkout = () => {
                 <button
                   type="button"
                   className="w-100 btn btn-success"
-                  onClick={handlPayment}
+                  onClick={(e) => CheckoutHandel(e, id, receiver, job_id)}
                 >
                   Continue to checkout
                 </button>
