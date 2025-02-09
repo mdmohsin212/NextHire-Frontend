@@ -5,13 +5,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-    const { id, receiver } = useParams();
+    const { id, receiver, job_id } = useParams();
     const navigate = useNavigate();
 
     const handlPayment = (event) => {
       event.preventDefault();
       CheckoutHandel(event, id, receiver);
-      navigate(`/make_payment/${id}`);
+      navigate(`/make_payment/${id}/${job_id}`);
     };
     return (
       <div>

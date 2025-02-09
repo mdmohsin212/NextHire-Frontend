@@ -1,7 +1,7 @@
-export const payment = () => {
+export const payment = (job_id) => {
   const user_id = localStorage.getItem("user_id");
   fetch(
-    `https://nexthire-backend.vercel.app/payment/make_payment/${user_id}/`,
+    `https://nexthire-backend.vercel.app/payment/make_payment/${user_id}/${job_id}/`,
     {
       method: "POST",
       headers: {

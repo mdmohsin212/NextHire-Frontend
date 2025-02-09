@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { payment } from './../components/payment';
 
 const MakePayment = () => {
-    const { id } = useParams();
+    const { id, job_id } = useParams();
   return (
     <div className="d-flex flex-column min-vh-100">
       <div className="container my-5">
@@ -27,7 +27,9 @@ const MakePayment = () => {
           </div>
 
           <div className="d-flex justify-content-center gap-3">
-            <button className="btn btn-success m-2" onClick={payment}>Make Payment</button>
+            <button className="btn btn-success m-2" onClick={() => payment(job_id)}>
+              Make Payment
+            </button>
           </div>
         </div>
       </div>
