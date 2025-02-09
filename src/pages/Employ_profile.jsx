@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,24 +11,11 @@ import {
 import { Link } from "react-router-dom";
 import { JobDeleteHandel } from "../components/job_post";
 import ProfileNav from "./Side_nav";
+import { JobContext } from './../context/JobContext';
+
 
 const EmployeProfile = () => {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const id = localStorage.getItem("user_id");
-
-  useEffect(() => {
-    fetch(`https://nexthire-backend.vercel.app/job/list/?employer_id=${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false);
-      });
-  }, []);
+  const {employeeJob, employeeJobloading} = useContext(JobContext)
 
   return (
     <>
@@ -41,16 +28,16 @@ const EmployeProfile = () => {
           <div className="p-3 m-auto">
             <h3 className="text-center p-2 fw-medium">My Jobs</h3>
 
-            {loading ? (
+            {employeeJobloading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-dark" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
-            ) : jobs.length === 0 ? (
+            ) : employeeJob.length === 0 ? (
               <p className="text-center fw-medium">No jobs available.</p>
             ) : (
-              jobs.map((item) => (
+              employeeJob.map((item) => (
                 <div key={item.id} className="p-4 mb-4 border rounded">
                   <div className="row g-4">
                     <div className="col-sm-12 col-md-8 d-flex align-items-center">

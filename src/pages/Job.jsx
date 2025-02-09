@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationCrosshairs,
@@ -10,32 +9,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, Link } from "react-router-dom";
 import Footer from "./Footer";
+import { JobContext } from "../context/JobContext";
 
 const ShowJob = () => {
-  const [jobs, setJobs] = useState([]);
-  const [filter, setFilter] = useState({ job_type: "" });
-  const [loading, setLoading] = useState(true);
+  const { jobs, loading } = useContext(JobContext);
+  const [filter, setFilter] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    const search = new URLSearchParams(filter);
-    fetch(`https://nexthire-backend.vercel.app/job/list/?${search}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false);
-      });
-  }, [filter]);
+    setFilter(location.pathname === "/" ? jobs.slice(0, 3) : jobs);
+  }, [location.pathname, jobs]);
 
-  const handleFilterChange = (jobType) => {
-    setFilter({ job_type: jobType });
+  const filterJobs = (jobType) => {
+    if (jobType === "all") {
+      setFilter(location.pathname === "/" ? jobs.slice(0, 3) : jobs);
+    } else {
+      const filteredJobs = jobs.filter((job) => job.job_type === jobType);
+      setFilter(
+        location.pathname === "/" ? filteredJobs.slice(0, 3) : filteredJobs
+      );
+    }
   };
-
-  const showingJobs = location.pathname === "/" ? jobs.slice(0, 3) : jobs;
 
   return (
     <div>
@@ -43,49 +37,16 @@ const ShowJob = () => {
         <div className="container">
           <h1 className="text-center mb-3">Job Listing</h1>
           <div className="mb-4 text-center">
-            <div
-              className="btn-group pb-2 pt-2"
-              role="group"
-              aria-label="Job Type Filter"
-            >
-              <button
-                className={`btn ${
-                  filter.job_type === "" ? "btn-success" : "btn-outline-success"
-                }`}
-                onClick={() => handleFilterChange("")}
-              >
-                All
-              </button>
-              <button
-                className={`btn ${
-                  filter.job_type === "Full Time"
-                    ? "btn-success"
-                    : "btn-outline-success"
-                }`}
-                onClick={() => handleFilterChange("Full Time")}
-              >
-                Full Time
-              </button>
-              <button
-                className={`btn ${
-                  filter.job_type === "Part Time"
-                    ? "btn-success"
-                    : "btn-outline-success"
-                }`}
-                onClick={() => handleFilterChange("Part Time")}
-              >
-                Part Time
-              </button>
-              <button
-                className={`btn ${
-                  filter.job_type === "Remote"
-                    ? "btn-success"
-                    : "btn-outline-success"
-                }`}
-                onClick={() => handleFilterChange("Remote")}
-              >
-                Remote
-              </button>
+            <div className="btn-group pb-2 pt-2" role="group">
+              {["all", "Full Time", "Part Time", "Remote"].map((type) => (
+                <button
+                  key={type}
+                  className="btn btn-outline-success"
+                  onClick={() => filterJobs(type)}
+                >
+                  {type}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -95,61 +56,57 @@ const ShowJob = () => {
                 <span className="visually-hidden">Loading...</span>
               </div>
             </div>
-          ) : showingJobs.length === 0 ? (
+          ) : filter.length === 0 ? (
             <h3 className="text-center">No Jobs Available</h3>
           ) : (
             <div>
-              {showingJobs.map((item) => (
+              {filter.map((item) => (
                 <div key={item.id} className="p-4 mb-4 border rounded">
                   <div className="row g-4">
-                    <div className="col-sm-12 col-md-8 d-flex align-items-center">
+                    <div className="col-md-8 d-flex align-items-center">
                       <img
-                        className="flex-shrink-0 img-fluid border rounded"
+                        className="img-fluid border rounded"
                         src={item.company_img}
                         alt={item.title}
                         style={{ width: "80px", height: "80px" }}
                       />
                       <div className="text-start ps-4">
                         <h5 className="mb-3">{item.title}</h5>
-                        <span className="text-truncate me-3">
+                        <span className="me-3">
                           <FontAwesomeIcon
                             icon={faLocationCrosshairs}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />
+                          />{" "}
                           {item.loaction}
                         </span>
-                        <span className="text-truncate me-3">
+                        <span className="me-3">
                           <FontAwesomeIcon
                             icon={faClock}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />
+                          />{" "}
                           {item.job_type}
                         </span>
-                        <span className="text-truncate me-0">
+                        <span>
                           <FontAwesomeIcon
                             icon={faMoneyBill}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />
+                          />{" "}
                           ${item.salary}
                         </span>
                       </div>
                     </div>
-                    <div className="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                      <small className="text-truncate">
+                    <div className="col-md-4 d-flex flex-column align-items-md-end">
+                      <small>
                         Upload Date:{" "}
                         {new Date(item.posted_date).toLocaleDateString()}
                       </small>
                       <div className="d-flex mb-3 mt-3 gap-2">
                         <Link
                           to={`/job_details/${item.id}`}
-                          className="btn btn-primary d-flex align-items-center"
+                          className="btn btn-primary"
                           style={{ backgroundColor: "#00b074" }}
                         >
-                          <FontAwesomeIcon
-                            icon={faUserTie}
-                            style={{ marginRight: "8px" }}
-                          />
-                          Apply Now
+                          <FontAwesomeIcon icon={faUserTie} /> Apply Now
                         </Link>
                       </div>
                     </div>
@@ -160,7 +117,7 @@ const ShowJob = () => {
                 <div className="text-center mt-4">
                   <Link
                     to="/jobs"
-                    className="bg bg-success btn-lg px-4 text-decoration-none rounded-pill shadow p-1 text-white"
+                    className="btn btn-success btn-lg px-3 rounded-pill"
                   >
                     See More Jobs
                   </Link>

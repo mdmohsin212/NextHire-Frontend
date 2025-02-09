@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import ProfileNav from "./Side_nav";
 import Footer from "./Footer";
+import { JobContext } from "../context/JobContext";
+
 
 const Profile = () => {
-  const [info, setInfo] = useState({});
+  const {info} = useContext(JobContext);
   const [isEditMode, setEditMode] = useState(false);
-  const id = localStorage.getItem("user_id");
   const role = localStorage.getItem("role");
-
-  useEffect(() => {
-    fetch(`https://nexthire-backend.vercel.app/user/profile/?id=${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setInfo(data[0].user);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -20,29 +20,37 @@ import ChangePassword from "./pages/Change_password";
 import RunningJob from './pages/Running_job';
 import ChoisenCandate from './pages/Choisen_candidate';
 import CompleteJob from './pages/Complete_job';
+import { JobProvider } from "./context/JobContext";
+import Checkout from './pages/checkout';
+import MakePayment from "./pages/make_payment";
+
 
 function App() {
   return (
     <>
-      <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/jobs" element={<ShowJob />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/job_details/:id" element={<JobDeatils />} />
-        <Route path="/post_job" element={<JobPost />} />
-        <Route path="/employe_profile" element={<EmployeProfile />} />
-        <Route path="/applicant_list/:id" element={<Applicant />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/running_job" element={<RunningJob />} />
-        <Route path="/applied_jobs" element={<SeekerProfile />} />
-        <Route path="/choisen_candidate" element={<ChoisenCandate />} />
-        <Route path="/change_password" element={<ChangePassword />} />
-        <Route path="/complete_job" element={<CompleteJob />} />
-      </Routes>
+      <JobProvider>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/jobs" element={<ShowJob />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/job_details/:id" element={<JobDeatils />} />
+          <Route path="/post_job" element={<JobPost />} />
+          <Route path="/employe_profile" element={<EmployeProfile />} />
+          <Route path="/applicant_list/:id" element={<Applicant />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/running_job" element={<RunningJob />} />
+          <Route path="/applied_jobs" element={<SeekerProfile />} />
+          <Route path="/choisen_candidate" element={<ChoisenCandate />} />
+          <Route path="/change_password" element={<ChangePassword />} />
+          <Route path="/complete_job" element={<CompleteJob />} />
+          <Route path="/make_payment/:id" element={<MakePayment />} />
+          <Route path="/checkout/:id/:receiver" element={<Checkout />} />
+        </Routes>
+      </JobProvider>
     </>
   );  
 }

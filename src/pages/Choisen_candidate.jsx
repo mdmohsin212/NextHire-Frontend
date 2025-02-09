@@ -1,34 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
 import ProfileNav from "./Side_nav";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaTasks, FaCheckCircle, FaEye } from "react-icons/fa";
+import { JobContext } from './../context/JobContext';
+import { NavLink } from "react-router-dom";
 
 const ChoisenCandate = () => {
-  const [applicants, setApplicants] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [task, setTask] = useState("");
   const [dateline, setDateline] = useState("");
   const [selectedApplicant, setSelectedApplicant] = useState(null);
-  const id = localStorage.getItem("user_id");
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://nexthire-backend.vercel.app/job/applied_job/?employer_id=${id}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setApplicants(data.filter((job) => job.status === "Approved"));
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false);
-      });
-  }, [id]);
+  const {applicants, Applicantsloading} = useContext(JobContext);
 
   const handleAssignTask = (applicant) => {
     setSelectedApplicant(applicant);
@@ -102,7 +86,7 @@ const ChoisenCandate = () => {
               All Candidates
             </h2>
             <hr />
-            {loading ? (
+            {Applicantsloading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-dark" role="status">
                   <span className="visually-hidden">Loading...</span>
@@ -157,25 +141,23 @@ const ChoisenCandate = () => {
                           )}
                         </td>
                         <td>
-                          {application.submit_status == "Pending" &&
-                          applicants.is_jobAssign == true ? (
+                          {application.submit_status === "Pending" &&
+                          application.is_jobAssign === true ? (
                             <div className="d-flex gap-2 flex-wrap">
-                              <button
+                              <NavLink
                                 className="btn btn-success"
-                                onClick={() =>
-                                  handleJobStatus(application.id, "Approved")
-                                }
+                                to={`/checkout/${application.job.salary}/${application.candidate.job_seeker}`}
                               >
                                 Approved
-                              </button>
-                              <button
+                              </NavLink>
+                              <NavLink
                                 className="btn btn-danger"
                                 onClick={() =>
                                   handleJobStatus(application.id, "Rejected")
                                 }
                               >
                                 Rejected
-                              </button>
+                              </NavLink>
                             </div>
                           ) : application.is_complete ? (
                             <p
