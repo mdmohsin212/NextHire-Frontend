@@ -5,7 +5,7 @@ import { JobContext } from "../context/JobContext";
 
 
 const Profile = () => {
-  const {info} = useContext(JobContext);
+  const {info, balance} = useContext(JobContext);
   const [isEditMode, setEditMode] = useState(false);
   const role = localStorage.getItem("role");
 
@@ -71,6 +71,25 @@ const Profile = () => {
                             }}
                           >
                             {info.username || "Username"}
+                          </p>
+                        </div>
+                      </div>
+                      <hr />
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <h6 className="mb-0">Balance</h6>
+                        </div>
+                        <div className="col-sm-9">
+                          <p
+                            className="text-secondary"
+                            style={{
+                              backgroundColor: "#effdf5",
+                              padding: "10px",
+                              borderRadius: "5px",
+                              margin: "0",
+                            }}
+                          >
+                            {balance || "First Name"}
                           </p>
                         </div>
                       </div>

@@ -7,6 +7,7 @@ export const JobProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const [info, setInfo] = useState({});
+  const [balance, setBalance] = useState(null);
   const id = localStorage.getItem("user_id");
 
   const [employeeJob, setemployeeJob] = useState([]);
@@ -34,6 +35,7 @@ export const JobProvider = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         setInfo(data[0].user);
+        setBalance(data[0].balance);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -70,7 +72,18 @@ export const JobProvider = ({ children }) => {
       }, [id]);
 
   return (
-    <JobContext.Provider value={{ jobs, loading, info, employeeJob, employeeJobloading, applicants, Applicantsloading }}>
+    <JobContext.Provider
+      value={{
+        jobs,
+        loading,
+        info,
+        balance,
+        employeeJob,
+        employeeJobloading,
+        applicants,
+        Applicantsloading,
+      }}
+    >
       {children}
     </JobContext.Provider>
   );
