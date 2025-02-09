@@ -7,7 +7,7 @@ export const UserLogin = (event) => {
   const password = getData("your_pass-login");
 
   if (username && password) {
-    fetch("https://nexthire-backend.onrender.com/user/login/", {
+    fetch("https://nexthire-backend.vercel.app/user/login/", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -63,19 +63,19 @@ export const UserRegistration = (event) => {
           password
         )
       ) {
-        fetch("https://nexthire-backend.onrender.com/user/register/", {
+        fetch("https://nexthire-backend.vercel.app/user/register/", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(data),
-        })
-          .then((res) => {
-            if(res.ok){
-              toast.success("Account created Successful. Check Mail for confirmation")
-            }
-            else{
-              toast.error("Something is wrong")
-            } 
-          });
+        }).then((res) => {
+          if (res.ok) {
+            toast.success(
+              "Account created Successful. Check Mail for confirmation"
+            );
+          } else {
+            toast.error("Something is wrong");
+          }
+        });
 
       } else {
         toast.error("pass must contain eight characters, one number and one special character, at least one letter");
@@ -91,7 +91,7 @@ export const UserRegistration = (event) => {
 
 export const UserLogout = () => {
   const auth_token = localStorage.getItem("token");
-  fetch("https://nexthire-backend.onrender.com/user/logout/", {
+  fetch("https://nexthire-backend.vercel.app/user/logout/", {
     method: "POST",
     headers: {
       Authorization: `Token ${auth_token}`,

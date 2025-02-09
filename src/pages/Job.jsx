@@ -19,7 +19,7 @@ const ShowJob = () => {
 
   useEffect(() => {
     const search = new URLSearchParams(filter);
-    fetch(`https://nexthire-backend.onrender.com/job/list/?${search}`)
+    fetch(`https://nexthire-backend.vercel.app/job/list/?${search}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

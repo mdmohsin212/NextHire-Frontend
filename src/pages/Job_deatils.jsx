@@ -18,7 +18,7 @@ const JobDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://nexthire-backend.onrender.com/job/list/${job_id}/`)
+    fetch(`https://nexthire-backend.vercel.app/job/list/${job_id}/`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data);

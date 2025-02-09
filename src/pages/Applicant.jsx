@@ -12,7 +12,7 @@ const Applicant = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/?job_id=${job_id}`
+      `https://nexthire-backend.vercel.app/job/applied_job/?job_id=${job_id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -45,7 +45,7 @@ const Applicant = () => {
       };
 
       fetch(
-        `https://nexthire-backend.onrender.com/job/applied_job/${selectedApplicant.id}/`,
+        `https://nexthire-backend.vercel.app/job/applied_job/${selectedApplicant.id}/`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

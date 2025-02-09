@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { showCategorie, showCompany } from "../components/app";
+import { showCompany } from "../components/app";
 import { JobPostHandel } from "../components/job_post";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const JobPost = () => {
   useEffect(() => {
-    showCategorie();
     showCompany();
   }, []);
 
@@ -121,7 +120,6 @@ const JobPost = () => {
           </div>
         </form>
       </div>
-      {/* job post end */}
       <Footer />
     </>
   );

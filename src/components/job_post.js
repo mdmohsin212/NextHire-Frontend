@@ -35,14 +35,14 @@ export const JobPostHandel = (event) => {
     salary &&
     company
   ) {
-    fetch("https://nexthire-backend.onrender.com/job/list/", {
+    fetch("https://nexthire-backend.vercel.app/job/list/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((res) => {
         if (res.ok) {
-          toast.success("Jobs Posted Successfully")
+          toast.success("Jobs Posted Successfully");
         } else {
           toast.error("Something is wrong");
         }
@@ -57,7 +57,7 @@ export const JobPostHandel = (event) => {
 
 export const JobDeleteHandel = (event, id) => {
   event.preventDefault();
-  fetch(`https://nexthire-backend.onrender.com/job/list/${id}/`, {
+  fetch(`https://nexthire-backend.vercel.app/job/list/${id}/`, {
     method: "DELETE",
   })
     .then((res) => {

@@ -10,7 +10,7 @@ const About = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch(`https://nexthire-backend.onrender.com/job/list/`)
+    fetch(`https://nexthire-backend.vercel.app/job/list/`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

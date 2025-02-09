@@ -17,7 +17,7 @@ const Navbar = () => {
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    fetch(`https://nexthire-backend.onrender.com/user/profile/?id=${userid}`)
+    fetch(`https://nexthire-backend.vercel.app/user/profile/?id=${userid}`)
       .then((response) => response.json())
       .then((data) => {
         setInfo(data[0].user);

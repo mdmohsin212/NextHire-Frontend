@@ -18,7 +18,7 @@ const EmployeProfile = () => {
   const id = localStorage.getItem("user_id");
 
   useEffect(() => {
-    fetch(`https://nexthire-backend.onrender.com/job/list/?employer_id=${id}`)
+    fetch(`https://nexthire-backend.vercel.app/job/list/?employer_id=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

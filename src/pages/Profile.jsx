@@ -9,7 +9,7 @@ const Profile = () => {
   const role = localStorage.getItem("role");
 
   useEffect(() => {
-    fetch(`https://nexthire-backend.onrender.com/user/profile/?id=${id}`)
+    fetch(`https://nexthire-backend.vercel.app/user/profile/?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
         setInfo(data[0].user);

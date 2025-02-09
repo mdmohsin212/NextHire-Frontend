@@ -14,11 +14,15 @@ const SeekerProfile = () => {
 
   useEffect(() => {
     fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/?seeker_id=${id}`
+      `https://nexthire-backend.vercel.app/job/applied_job/?seeker_id=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setApplications(data.filter((job) => job.status === "Approved" && job.is_complete === false));
+        setApplications(
+          data.filter(
+            (job) => job.status === "Approved" && job.is_complete === false
+          )
+        );
         setLoading(false);
       })
       .catch((error) => {
@@ -34,21 +38,21 @@ const SeekerProfile = () => {
             is_complete: true,
           };
         fetch(
-            `https://nexthire-backend.onrender.com/job/applied_job/${selectedJob.id}/`,
-            {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
+          `https://nexthire-backend.vercel.app/job/applied_job/${selectedJob.id}/`,
+          {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              toast.success("Task Submit successfully");
+            } else {
+              toast.error("Failed to assign task. Please try again.");
             }
-          )
-            .then((res) => {
-              if (res.ok) {
-                toast.success("Task Submit successfully");
-              } else {
-                toast.error("Failed to assign task. Please try again.");
-              }
-            })
-            .catch((error) => console.error("Error:", error));
+          })
+          .catch((error) => console.error("Error:", error));
         } else {
           toast.error("Please fill in all fields.");
         }

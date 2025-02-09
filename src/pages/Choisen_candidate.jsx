@@ -17,7 +17,7 @@ const ChoisenCandate = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/?employer_id=${id}`
+      `https://nexthire-backend.vercel.app/job/applied_job/?employer_id=${id}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -42,7 +42,7 @@ const ChoisenCandate = () => {
         is_jobAssign: true,
       };
       fetch(
-        `https://nexthire-backend.onrender.com/job/applied_job/${selectedApplicant.id}/`,
+        `https://nexthire-backend.vercel.app/job/applied_job/${selectedApplicant.id}/`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -67,7 +67,7 @@ const ChoisenCandate = () => {
 
   const handleJobStatus = (applicantId, status) => {
     fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/${applicantId}/`,
+      `https://nexthire-backend.vercel.app/job/applied_job/${applicantId}/`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

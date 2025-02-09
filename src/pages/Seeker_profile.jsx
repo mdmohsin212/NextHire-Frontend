@@ -13,7 +13,7 @@ const SeekerProfile = () => {
 
   useEffect(() => {
     fetch(
-      `https://nexthire-backend.onrender.com/job/applied_job/?seeker_id=${id}`
+      `https://nexthire-backend.vercel.app/job/applied_job/?seeker_id=${id}`
     )
       .then((res) => res.json())
       .then((data) => {

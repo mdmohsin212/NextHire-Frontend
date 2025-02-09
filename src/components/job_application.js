@@ -28,32 +28,32 @@ export const JobApplication = (event, job_id) => {
   const userrole = localStorage.getItem("role");
 
   if (userData && userid && userrole != "Employer") {
-    fetch(`https://nexthire-backend.onrender.com/job/status/${userid}/${job_id}/`)
-    .then((res) => res.json())
-    .then((data) => {
-      if(data.status === true){
-        if (name && email && website && cv && letter) {
-          fetch("https://nexthire-backend.onrender.com/resume/job_apply/", {
-            method: "POST",
-            headers: {},
-            body: formData,
-          }).then((res) => {
-            if (res.ok) {
-              toast.success("Job application succesful");
-              window.location.href = "/applied_jobs";
-            }
-            else{
-              toast.error("something is wrong")
-            }
-          });
+    fetch(`https://nexthire-backend.vercel.app/job/status/${userid}/${job_id}/`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === true) {
+          if (name && email && website && cv && letter) {
+            fetch("https://nexthire-backend.vercel.app/resume/job_apply/", {
+              method: "POST",
+              headers: {},
+              body: formData,
+            }).then((res) => {
+              if (res.ok) {
+                toast.success("Job application succesful");
+                window.location.href = "/applied_jobs";
+              } else {
+                toast.error("something is wrong");
+              }
+            });
+          } else {
+            toast.error(
+              "Please fill in all required fields for job application."
+            );
+          }
         } else {
-          toast.error("Please fill in all required fields for job application.");
+          toast.error("You already apply on this job");
         }
-      }
-      else{
-        toast.error("You already apply on this job")
-      }
-    });
+      });
   } else {
     if (userrole == "Employer") {
       toast.error("Please at first login as a job seeker for job application.");
@@ -81,16 +81,13 @@ export const PasswordChangeHandel = (event) => {
     new_password,
   };
 
-  fetch(
-    `https://nexthire-backend.onrender.com/user/change_password/${userid}/`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  )
+  fetch(`https://nexthire-backend.vercel.app/user/change_password/${userid}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
     .then((res) => res.json())
     .then((data) => {
       if (data.error) {
