@@ -37,14 +37,17 @@ export const JobApplication = (event, job_id) => {
               method: "POST",
               headers: {},
               body: formData,
-            }).then((res) => {
-              if (res.ok) {
-                toast.success("Job application succesful");
-                window.location.href = "/applied_jobs";
-              } else {
-                toast.error("something is wrong");
-              }
-            });
+            })
+              .then((res) => {
+                if (res.ok) {
+                  toast.success("Job application succesful");
+                  window.location.href = "/applied_jobs";
+                } else {
+                  toast.error("something is wrong");
+                }
+                return res.json();
+              })
+              .then((data) => console.log(data));
           } else {
             toast.error(
               "Please fill in all required fields for job application."

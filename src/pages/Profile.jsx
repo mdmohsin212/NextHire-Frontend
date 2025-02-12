@@ -30,7 +30,7 @@ const Profile = () => {
             <div className="main-body pt-3">
               <div className="row gutters-sm">
                 <div className="col-md-4 mb-3">
-                  <div className="card">
+                  <div className="card shadow">
                     <div className="card-body">
                       <div className="d-flex flex-column align-items-center text-center">
                         <div
@@ -52,9 +52,35 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
+                  {role == "Job Seeker" ? (
+                    <div className="card mt-5 shadow border-1">
+                      <div className="card-body">
+                        <div className="text-center">
+                          <div className="row align-items-center">
+                            <div className="col-sm-3">
+                              <h6 className="mb-0 fw-semibold">Balance : </h6>
+                            </div>
+                            <div className="col-sm-9">
+                              <p
+                                className="text-secondary p-2 rounded m-0"
+                                style={{
+                                  backgroundColor: "#effdf5",
+                                  padding: "10px",
+                                  borderRadius: "5px",
+                                  margin: "0",
+                                }}
+                              >
+                                ${balance ?? "Loading..."}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
                 <div className="col-md-8">
-                  <div className="card mb-3">
+                  <div className="card mb-3 p-3 shadow">
                     <div className="card-body">
                       <div className="row">
                         <div className="col-sm-3">
@@ -71,25 +97,6 @@ const Profile = () => {
                             }}
                           >
                             {info.username || "Username"}
-                          </p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <h6 className="mb-0">Balance</h6>
-                        </div>
-                        <div className="col-sm-9">
-                          <p
-                            className="text-secondary"
-                            style={{
-                              backgroundColor: "#effdf5",
-                              padding: "10px",
-                              borderRadius: "5px",
-                              margin: "0",
-                            }}
-                          >
-                            {balance || "First Name"}
                           </p>
                         </div>
                       </div>

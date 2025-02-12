@@ -82,10 +82,9 @@ const ChoisenCandate = () => {
 
         <div className="container-fluid mt-4 col-12 col-md-10 order-2 order-md-2 pb-5 pt-md-2">
           <div className="w-100">
-            <h2 className="text-center pt-3 pb-3 text-success">
+            <h2 className="text-center pt-3 pb-2 text-success">
               All Candidates
             </h2>
-            <hr />
             {Applicantsloading ? (
               <div className="d-flex justify-content-center py-5">
                 <div className="spinner-border text-dark" role="status">
