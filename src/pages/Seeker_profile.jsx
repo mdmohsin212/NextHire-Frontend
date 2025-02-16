@@ -53,7 +53,7 @@ const SeekerProfile = () => {
                       <th>Id</th>
                       <th>Job Title</th>
                       <th className="d-none d-md-table-cell">Location</th>
-                      <th className="d-none d-md-table-cell">Job Type</th>
+                      <th className="d-none d-md-table-cell">Applied date</th>
                       <th>Status</th>
                       <th>Actions</th>
                     </tr>
@@ -67,7 +67,7 @@ const SeekerProfile = () => {
                           {application.job.loaction}
                         </td>
                         <td className="d-none d-md-table-cell">
-                          {application.job.job_type}
+                          {new Date(application.candidate.applied_date).toLocaleString()}
                         </td>
                         <td>
                           <span
