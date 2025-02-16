@@ -106,7 +106,7 @@ const ShowJob = () => {
                           className="btn btn-primary"
                           style={{ backgroundColor: "#00b074" }}
                         >
-                          <FontAwesomeIcon icon={faUserTie} /> Apply Now
+                          <FontAwesomeIcon icon={faUserTie} /> Job Deatils
                         </Link>
                       </div>
                     </div>

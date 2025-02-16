@@ -86,8 +86,9 @@ const SeekerProfile = () => {
                 <table className="table table-bordered">
                   <thead>
                     <tr>
+                      <th>Id</th>
                       <th>Job Title</th>
-                      <th>Location</th>
+                      <th className="d-none d-md-table-cell">Location</th>
                       <th className="d-none d-md-table-cell">Job Type</th>
                       <th>Status</th>
                       <th>Actions</th>
@@ -96,8 +97,11 @@ const SeekerProfile = () => {
                   <tbody>
                     {applications.map((application) => (
                       <tr key={application.id}>
+                        <td>{application.id}</td>
                         <td>{application.job.title}</td>
-                        <td>{application.job.loaction}</td>
+                        <td className="d-none d-md-table-cell">
+                          {application.job.loaction}
+                        </td>
                         <td className="d-none d-md-table-cell">
                           {application.job.job_type}
                         </td>

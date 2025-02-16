@@ -14,7 +14,6 @@ const CompleteJob = () => {
       .then((res) => res.json())
       .then((data) => {
         setApplications(data.filter((job) => job.is_complete === true));
-        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -46,6 +45,7 @@ const CompleteJob = () => {
                 <table className="table table-bordered">
                   <thead>
                     <tr>
+                      <th>Id</th>
                       <th>Job Title</th>
                       <th>Location</th>
                       <th className="d-none d-md-table-cell">Job Type</th>
@@ -55,6 +55,7 @@ const CompleteJob = () => {
                   <tbody>
                     {applications.map((application) => (
                       <tr key={application.id}>
+                        <td>{application.id}</td>
                         <td>{application.job.title}</td>
                         <td>{application.job.loaction}</td>
                         <td className="d-none d-md-table-cell">

@@ -94,7 +94,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="mb-3 statistics-section">
+      <div className="mb-4 pt-2 statistics-section">
         <div className="container text-center">
           <div className="row justify-content-around text-center gap-3">
             <div className="col-md-3 col-12">
