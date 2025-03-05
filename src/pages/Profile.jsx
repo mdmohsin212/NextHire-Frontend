@@ -52,32 +52,6 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
-                  {role == "Job Seeker" ? (
-                    <div className="card mt-5 shadow border-1">
-                      <div className="card-body">
-                        <div className="text-center">
-                          <div className="row align-items-center">
-                            <div className="col-sm-3">
-                              <h6 className="mb-0 fw-semibold">Balance : </h6>
-                            </div>
-                            <div className="col-sm-9">
-                              <p
-                                className="text-secondary p-2 rounded m-0"
-                                style={{
-                                  backgroundColor: "#effdf5",
-                                  padding: "10px",
-                                  borderRadius: "5px",
-                                  margin: "0",
-                                }}
-                              >
-                                ${balance ?? "Loading..."}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : null}
                 </div>
                 <div className="col-md-8">
                   <div className="card mb-3 p-3 shadow">

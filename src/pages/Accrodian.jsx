@@ -14,7 +14,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 const Accordion = () => {
   return (
     <div>
-      <div className="container mb-4">
+      <div className="container mb-3">
         <div id="accordion">
           <div className="card border-0">
             <div className="card-header p-0 border-0" id="heading-1">

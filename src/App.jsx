@@ -21,8 +21,6 @@ import RunningJob from './pages/Running_job';
 import ChoisenCandate from './pages/Choisen_candidate';
 import CompleteJob from './pages/Complete_job';
 import { JobProvider } from "./context/JobContext";
-import Checkout from './pages/checkout';
-import MakePayment from "./pages/make_payment";
 
 
 function App() {
@@ -47,8 +45,6 @@ function App() {
           <Route path="/choisen_candidate" element={<ChoisenCandate />} />
           <Route path="/change_password" element={<ChangePassword />} />
           <Route path="/complete_job" element={<CompleteJob />} />
-          <Route path="/make_payment/:id" element={<MakePayment />} />
-          <Route path="/checkout/:id/:receiver/:job_id" element={<Checkout />} />
         </Routes>
       </JobProvider>
     </>

@@ -145,7 +145,6 @@ const ChoisenCandate = () => {
                             <div className="d-flex gap-2 flex-wrap">
                               <NavLink
                                 className="btn btn-success"
-                                to={`/checkout/${application.job.salary}/${application.candidate.job_seeker}/${application.id}`}
                               >
                                 Approved
                               </NavLink>

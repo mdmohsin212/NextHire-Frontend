@@ -77,7 +77,7 @@ const ShowJob = () => {
                             icon={faLocationCrosshairs}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
                           />{" "}
-                          {item.loaction}
+                          {item.location}
                         </span>
                         <span className="me-3">
                           <FontAwesomeIcon

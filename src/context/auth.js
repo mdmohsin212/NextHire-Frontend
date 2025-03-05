@@ -14,8 +14,9 @@ export const UserLogin = (event) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.token && data.user_id && data.role) {
-          localStorage.setItem("token", data.token);
+        if (data.access && data.user_id && data.role) {
+          localStorage.setItem("token", data.access);
+          localStorage.setItem("refress", data.refresh);
           localStorage.setItem("user_id", data.user_id);
           localStorage.setItem("role", data.role);
           window.location.href = "/";
