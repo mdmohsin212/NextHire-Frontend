@@ -33,7 +33,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow sticky-top p-2">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white shadow sticky-top px-4">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand d-flex align-items-center">
             <h1 className="m-0 bg">NextHire</h1>
@@ -85,7 +85,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className="ms-4 me-5">
+            <div className="ms-2">
               <div className="text-center">
                 {isAuthenticated ? (
                   <div className="d-flex align-items-center gap-4 justify-content-center justify-content-sm-start">

@@ -81,10 +81,17 @@
   object-fit: cover;
 }
 
+.mr-sm{
+  padding-bottom: 30px !important;
+}
+
 @media (min-width: 768px) {
   .custom-img {
     height: auto;
     object-fit: cover;
+  }
+  .img{
+    width: 450px;
   }
 }
 

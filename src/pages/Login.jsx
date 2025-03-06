@@ -23,10 +23,9 @@ const Login = () => {
       <ToastContainer position="top-center" />
       <div className="w-75 pt-5 mt-5 h-75 m-auto mb-5 rounded-4">
         <div className="row pt-5 ps-2">
-          <div className="col-md-6">
+          <div className="col-md-6 mt-md-5">
             <div className="signin-form">
-              <h1 className="form-title text-center">Sign In</h1>
-              <div className="border rounded p-2 m-1">
+              <div className="border rounded p-3 my-2">
                 <h3 className="bg">For Testing</h3>
                 <div className="d-flex gap-3 pb-3">
                   <button
@@ -54,7 +53,7 @@ const Login = () => {
                 </div>
               </div>
               <form method="POST" className="register-form" id="login-form">
-                <div className="mb-3">
+                <div className="mb-3 mt-3">
                   <label for="Username" className="form-label">
                     Username
                   </label>
@@ -101,8 +100,8 @@ const Login = () => {
           </div>
           <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="images/login.svg"
-              className="img-fluid rounded-3 w-50"
+              src="images/Login-test.svg"
+              className="img-fluid rounded-3 img"
               alt="Sign in illustration"
             />
           </div>

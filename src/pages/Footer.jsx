@@ -8,8 +8,9 @@ import {
 import {
   faGithub,
   faFacebook,
-  faYoutube,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -59,11 +60,11 @@ const Footer = () => {
               </a>
               <a
                 className="btn btn-outline-light btn-social me-2"
-                href="https://www.youtube.com/@MdMohsin-v6n"
+                href="https://www.linkedin.com/in/mohsin416"
                 target="__blank"
               >
                 <FontAwesomeIcon
-                  icon={faYoutube}
+                  icon={faLinkedin}
                   style={{ color: "#63E6BE" }}
                 />
               </a>
@@ -72,47 +73,33 @@ const Footer = () => {
 
           <div className="col-lg-3 col-md-6 offset-lg-6 text-end">
             <h5 className="text-white mb-4">Quick Links</h5>
-            <a
+            <Link
               className="btn btn-link text-white-50 text-decoration-none"
-              href=""
+              to="/about"
             >
               About Us
-            </a>
+            </Link>
             <br />
-            <a
+            <Link
               className="btn btn-link text-white-50 text-decoration-none"
-              href=""
-            >
-              Privacy Policy
-            </a>
-            <br />
-            <a
-              className="btn btn-link text-white-50 text-decoration-none"
-              href=""
-            >
-              Terms & Condition
-            </a>
-            <br />
-            <a
-              className="btn btn-link text-white-50 text-decoration-none"
-              href=""
+              to="/contact"
             >
               Contact Us
-            </a>
+            </Link>
             <br />
-            <a
+            <Link
               className="btn btn-link text-white-50 text-decoration-none"
-              href=""
+              to="/contact"
             >
               Help
-            </a>
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="copyright">
         <div className="row">
-          <p className="text-center">NextHire © All Right Reserved</p>
+          <p className="text-center">NextHire 2025 © All Right Reserved</p>
         </div>
       </div>
     </div>

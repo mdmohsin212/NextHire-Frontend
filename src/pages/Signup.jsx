@@ -125,8 +125,8 @@ const Signup = () => {
           </div>
           <div className="col-md-6 d-none d-md-flex align-items-center justify-content-center">
             <img
-              src="images/signup.svg"
-              className="img-fluid rounded-4 w-75"
+              src="images/Signup-test.svg"
+              className="img-fluid rounded-4"
               alt="Sign up illustration"
             />
           </div>

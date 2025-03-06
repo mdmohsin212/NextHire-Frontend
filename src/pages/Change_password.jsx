@@ -62,7 +62,7 @@ const ChangePassword = () => {
               <div className="d-flex justify-content-between align-items-center">
                 <button
                   type="submit"
-                  className="btn btn-outline-dark"
+                  className="btn btn-outline-success"
                   onClick={(e) => PasswordChangeHandel(e)}
                 >
                   Change Password

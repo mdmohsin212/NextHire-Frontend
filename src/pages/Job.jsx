@@ -14,7 +14,19 @@ import { JobContext } from "../context/JobContext";
 const ShowJob = () => {
   const { jobs, loading } = useContext(JobContext);
   const [filter, setFilter] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
   const location = useLocation();
+
+  const LastItem = currentPage * itemsPerPage;
+  const FirstItem = LastItem - itemsPerPage;
+  const currentItems = filter.slice(FirstItem, LastItem);
+
+  const totalPages = Math.ceil(filter.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     setFilter(location.pathname === "/" ? jobs.slice(0, 3) : jobs);
@@ -29,6 +41,7 @@ const ShowJob = () => {
         location.pathname === "/" ? filteredJobs.slice(0, 3) : filteredJobs
       );
     }
+    setCurrentPage(1);
   };
 
   return (
@@ -60,7 +73,7 @@ const ShowJob = () => {
             <h3 className="text-center">No Jobs Available</h3>
           ) : (
             <div>
-              {filter.map((item) => (
+              {currentItems.map((item) => (
                 <div key={item.id} className="p-4 mb-4 border rounded">
                   <div className="row g-4">
                     <div className="col-md-8 d-flex align-items-center">
@@ -106,7 +119,7 @@ const ShowJob = () => {
                           className="btn btn-primary"
                           style={{ backgroundColor: "#00b074" }}
                         >
-                          <FontAwesomeIcon icon={faUserTie} /> Job Deatils
+                          <FontAwesomeIcon icon={faUserTie} /> Job Details
                         </Link>
                       </div>
                     </div>
@@ -121,6 +134,20 @@ const ShowJob = () => {
                   >
                     See More Jobs
                   </Link>
+                </div>
+              )}
+
+              {location.pathname !== "/" && (
+                <div className="text-center mt-4">
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handlePageChange(index + 1)}
+                      className="btn btn-outline-success mx-1"
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
