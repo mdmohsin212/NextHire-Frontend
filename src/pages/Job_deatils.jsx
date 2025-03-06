@@ -9,7 +9,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { JobApplication } from "../components/job_application";;
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const JobDetails = () => {
@@ -30,11 +30,13 @@ const JobDetails = () => {
       });
   }, [job_id]);
 
-  return (
-    <>
-      <ToastContainer position="top-center" />
+return (
+  <div className="d-flex flex-column min-vh-100">
+    <ToastContainer position="top-center" />
+
+    <div className="flex-grow-1">
       {loading ? (
-        <div className="d-flex justify-content-center py-5">
+        <div className="d-flex justify-content-center align-items-center flex-grow-1 py-5">
           <div className="spinner-border text-dark" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
@@ -190,11 +192,14 @@ const JobDetails = () => {
           </div>
         </div>
       ) : (
-        <p>No job details available</p>
+        <p className="text-center">No job details available</p>
       )}
-      <Footer />
-    </>
-  );
+    </div>
+
+    <Footer />
+  </div>
+);
+
 };
 
 export default JobDetails;

@@ -54,7 +54,7 @@ const EmployeProfile = () => {
                             icon={faLocationCrosshairs}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
                           />
-                          {item.loaction}
+                          {item.location}
                         </span>
                         <span className="text-truncate me-3">
                           <FontAwesomeIcon

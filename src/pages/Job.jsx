@@ -21,7 +21,6 @@ const ShowJob = () => {
   const LastItem = currentPage * itemsPerPage;
   const FirstItem = LastItem - itemsPerPage;
   const currentItems = filter.slice(FirstItem, LastItem);
-
   const totalPages = Math.ceil(filter.length / itemsPerPage);
 
   const handlePageChange = (page) => {
@@ -29,24 +28,22 @@ const ShowJob = () => {
   };
 
   useEffect(() => {
-    setFilter(location.pathname === "/" ? jobs.slice(0, 3) : jobs);
-  }, [location.pathname, jobs]);
+    setFilter(jobs);
+  }, [jobs]);
 
   const filterJobs = (jobType) => {
     if (jobType === "all") {
-      setFilter(location.pathname === "/" ? jobs.slice(0, 3) : jobs);
+      setFilter(jobs);
     } else {
       const filteredJobs = jobs.filter((job) => job.job_type === jobType);
-      setFilter(
-        location.pathname === "/" ? filteredJobs.slice(0, 3) : filteredJobs
-      );
+      setFilter(filteredJobs);
     }
     setCurrentPage(1);
   };
 
   return (
-    <div>
-      <div className="container-xxl py-3">
+    <div className="d-flex flex-column min-vh-100">
+      <div className="container-xxl py-3 flex-grow-1">
         <div className="container">
           <h1 className="text-center mb-3">Job Listing</h1>
           <div className="mb-4 text-center">
@@ -126,19 +123,8 @@ const ShowJob = () => {
                   </div>
                 </div>
               ))}
-              {location.pathname === "/" && (
-                <div className="text-center mt-4">
-                  <Link
-                    to="/jobs"
-                    className="btn btn-success btn-lg px-3 rounded-pill"
-                  >
-                    See More Jobs
-                  </Link>
-                </div>
-              )}
 
-              {location.pathname !== "/" && (
-                <div className="text-center mt-4">
+              <div className="text-center mt-4">
                   {Array.from({ length: totalPages }, (_, index) => (
                     <button
                       key={index}
@@ -148,13 +134,12 @@ const ShowJob = () => {
                       {index + 1}
                     </button>
                   ))}
-                </div>
-              )}
+              </div>
             </div>
           )}
         </div>
       </div>
-      {location.pathname !== "/" && <Footer />}
+      <Footer />
     </div>
   );
 };

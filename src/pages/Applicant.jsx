@@ -64,7 +64,7 @@ const Applicant = () => {
   return (
     <div className="d-flex flex-column vh-100">
       <h2 className="text-center bg-dark text-white py-3">All Applicants</h2>
-      <div className="container my-4">
+      <div className="container my-4 flex-grow-1">
         {loading ? (
           <div className="d-flex justify-content-center py-5">
             <div className="spinner-border text-primary" role="status">
