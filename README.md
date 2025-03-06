@@ -32,7 +32,7 @@ Welcome to **NextHire**, a modern job portal designed to connect job seekers wit
 
 1. Clone the repository:
     ```bash
-    https://github.com/mdmohsin212/NextHire-Frontend.git
+    git clone https://github.com/mdmohsin212/NextHire-Frontend.git
     ```
 
 2. Navigate to the project directory:
