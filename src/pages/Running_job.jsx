@@ -48,6 +48,7 @@ const SeekerProfile = () => {
           .then((res) => {
             if (res.ok) {
               toast.success("Task Submit successfully");
+              setTimeout(() => location.reload(), 1000);
             } else {
               toast.error("Failed to assign task. Please try again.");
             }
@@ -100,7 +101,7 @@ const SeekerProfile = () => {
                         <td>{application.id}</td>
                         <td>{application.job.title}</td>
                         <td className="d-none d-md-table-cell">
-                          {application.job.loaction}
+                          {application.job.location}
                         </td>
                         <td className="d-none d-md-table-cell">
                           {new Date(

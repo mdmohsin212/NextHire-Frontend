@@ -145,6 +145,9 @@ const ChoisenCandate = () => {
                             <div className="d-flex gap-2 flex-wrap">
                               <NavLink
                                 className="btn btn-success"
+                                onClick={() =>
+                                  handleJobStatus(application.id, "Approved")
+                                }
                               >
                                 Approved
                               </NavLink>

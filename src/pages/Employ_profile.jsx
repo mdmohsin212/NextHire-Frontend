@@ -18,8 +18,8 @@ const EmployeProfile = () => {
   const {employeeJob, employeeJobloading} = useContext(JobContext)
 
   return (
-    <>
-      <div className="d-flex flex-column flex-md-row">
+    <div className="d-flex flex-column min-vh-100">
+      <div className="d-flex flex-column flex-md-row flex-grow-1">
         <div className="order-1 order-md-1 d-flex justify-content-center align-items-center text-center bg-light py-1">
           <ProfileNav />
         </div>
@@ -103,7 +103,7 @@ const EmployeProfile = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 export default EmployeProfile;

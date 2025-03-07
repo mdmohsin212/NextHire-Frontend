@@ -85,7 +85,7 @@ class ProfileNav extends Component {
                       ? "nav-link-item active-link-item"
                       : "nav-link-item"
                   }
-                  to="/employe_profile"
+                  to="/my_jobs"
                 >
                   <FontAwesomeIcon
                     icon={faBriefcase}

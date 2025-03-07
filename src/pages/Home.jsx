@@ -11,25 +11,32 @@ import {
   faClock,
   faMoneyBill,
   faUserTie,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   const { jobs, loading } = useContext(JobContext);
   const [filter, setFilter] = useState([]);
+  const [search, setSearch] = useState("");
+  const [jobType, setJobType] = useState("all");
 
 
   useEffect(() => {
-      setFilter(jobs.slice(0, 3));
-    }, [jobs]);
-
-    const filterJobs = (jobType) => {
-      if (jobType === "all") {
-        setFilter(jobs.slice(0, 3));
-      } else {
-        const filteredJobs = jobs.filter((job) => job.job_type === jobType);
-        setFilter(filteredJobs.slice(0, 3));
-      }
-    };
+    let filteredJobs = jobs;
+    if (jobType !== "all") {
+      filteredJobs = filteredJobs.filter((job) => job.job_type === jobType);
+    }
+    if (search) {
+      filteredJobs = filteredJobs.filter(
+        (job) =>
+          job.title.toLowerCase().includes(search.toLowerCase()) ||
+          job.location.toLowerCase().includes(search.toLowerCase()) ||
+          job.job_type.toLowerCase().includes(search.toLowerCase()) ||
+          job.salary.toString().includes(search)
+      );
+    }
+    setFilter(filteredJobs.slice(0,3));
+  }, [jobs, jobType, search]);
 
   return (
     <div style={{ fontFamily: "Roboto, sans-serif" }}>
@@ -67,17 +74,33 @@ const Home = () => {
         <div className="text-center pt-3">
           <div className="container">
             <h1 className="text-center mb-3">Job Listing</h1>
-            <div className="mb-4 text-center">
-              <div className="btn-group pb-2" role="group">
-                {["all", "Full Time", "Part Time", "Remote"].map((type) => (
-                  <button
-                    key={type}
-                    className="btn btn-outline-success"
-                    onClick={() => filterJobs(type)}
-                  >
-                    {type}
-                  </button>
-                ))}
+
+            <div className="row mb-4">
+              <div className="col-md-6">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search by title, location, salary, or job type..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <span className="input-group-text">
+                    <FontAwesomeIcon icon={faSearch} />
+                  </span>
+                </div>
+              </div>
+              <div className="col-md-6 text-md-end mt-2 mt-md-0">
+                <select
+                  className="form-select w-auto d-inline-block"
+                  value={jobType}
+                  onChange={(e) => setJobType(e.target.value)}
+                >
+                  <option value="all">All Jobs</option>
+                  <option value="Full Time">Full Time</option>
+                  <option value="Part Time">Part Time</option>
+                  <option value="Remote">Remote</option>
+                </select>
               </div>
             </div>
 
@@ -145,12 +168,12 @@ const Home = () => {
                   </div>
                 ))}
                 <div className="text-center mt-4">
-                    <Link
-                      to="/jobs"
-                      className="btn btn-success btn-lg px-3 rounded-pill"
-                    >
-                      See More Jobs
-                    </Link>
+                  <Link
+                    to="/jobs"
+                    className="btn btn-success btn-lg px-3 rounded-pill"
+                  >
+                    See More Jobs
+                  </Link>
                 </div>
               </div>
             )}

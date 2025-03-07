@@ -57,12 +57,11 @@ const CompleteJob = () => {
                       <tr key={application.id}>
                         <td>{application.id}</td>
                         <td>{application.job.title}</td>
-                        <td>{application.job.loaction}</td>
+                        <td>{application.job.location}</td>
                         <td className="d-none d-md-table-cell">
                           {application.job.job_type}
                         </td>
                         <td>
-                          {application.is_complete ? (
                             <p
                               className={`badge text-white rounded-pill shadow-sm px-3 py-1 d-inline-block ${
                                 application.submit_status === "Approved"
@@ -79,15 +78,6 @@ const CompleteJob = () => {
                             >
                               {application.submit_status}
                             </p>
-                          ) : application.task && application.final_dateline ? (
-                            <button
-                              className="btn btn-primary"
-                              style={{ backgroundColor: "#00b074" }}
-                              onClick={() => setJob(application)}
-                            >
-                              Submit Job
-                            </button>
-                          ) : null}
                         </td>
                       </tr>
                     ))}

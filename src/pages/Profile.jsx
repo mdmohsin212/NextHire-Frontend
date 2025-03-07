@@ -5,7 +5,7 @@ import { JobContext } from "../context/JobContext";
 
 
 const Profile = () => {
-  const {info, balance} = useContext(JobContext);
+  const {info} = useContext(JobContext);
   const [isEditMode, setEditMode] = useState(false);
   const role = localStorage.getItem("role");
 

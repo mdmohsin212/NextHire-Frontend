@@ -6,57 +6,77 @@ import {
   faClock,
   faMoneyBill,
   faUserTie,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import { JobContext } from "../context/JobContext";
 
 const ShowJob = () => {
   const { jobs, loading } = useContext(JobContext);
   const [filter, setFilter] = useState([]);
+  const [search, setSearch] = useState("");
+  const [jobType, setJobType] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const location = useLocation();
+
+  useEffect(() => {
+    let filteredJobs = jobs;
+    if (jobType !== "all") {
+      filteredJobs = filteredJobs.filter((job) => job.job_type === jobType);
+    }
+    if (search) {
+      filteredJobs = filteredJobs.filter(
+        (job) =>
+          job.title.toLowerCase().includes(search.toLowerCase()) ||
+          job.location.toLowerCase().includes(search.toLowerCase()) ||
+          job.job_type.toLowerCase().includes(search.toLowerCase()) ||
+          job.salary.toString().includes(search)
+      );
+    }
+    setFilter(filteredJobs);
+    setCurrentPage(1);
+  }, [jobs, jobType, search]);
+
+  const handlePageChange = (page) => setCurrentPage(page);
 
   const LastItem = currentPage * itemsPerPage;
   const FirstItem = LastItem - itemsPerPage;
   const currentItems = filter.slice(FirstItem, LastItem);
   const totalPages = Math.ceil(filter.length / itemsPerPage);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  useEffect(() => {
-    setFilter(jobs);
-  }, [jobs]);
-
-  const filterJobs = (jobType) => {
-    if (jobType === "all") {
-      setFilter(jobs);
-    } else {
-      const filteredJobs = jobs.filter((job) => job.job_type === jobType);
-      setFilter(filteredJobs);
-    }
-    setCurrentPage(1);
-  };
-
   return (
     <div className="d-flex flex-column min-vh-100">
       <div className="container-xxl py-3 flex-grow-1">
         <div className="container">
-          <h1 className="text-center mb-3">Job Listing</h1>
-          <div className="mb-4 text-center">
-            <div className="btn-group pb-2 pt-2" role="group">
-              {["all", "Full Time", "Part Time", "Remote"].map((type) => (
-                <button
-                  key={type}
-                  className="btn btn-outline-success"
-                  onClick={() => filterJobs(type)}
-                >
-                  {type}
-                </button>
-              ))}
+          <h1 className="text-center mb-4">Job Listings</h1>
+
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search by title, location, salary, or job type..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon={faSearch} />
+                </span>
+              </div>
+            </div>
+            <div className="col-md-6 text-md-end mt-2 mt-md-0">
+              <select
+                className="form-select w-auto d-inline-block"
+                value={jobType}
+                onChange={(e) => setJobType(e.target.value)}
+              >
+                <option value="all">All Jobs</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Remote">Remote</option>
+              </select>
             </div>
           </div>
 
@@ -86,21 +106,21 @@ const ShowJob = () => {
                           <FontAwesomeIcon
                             icon={faLocationCrosshairs}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />{" "}
+                          />
                           {item.location}
                         </span>
                         <span className="me-3">
                           <FontAwesomeIcon
                             icon={faClock}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />{" "}
+                          />
                           {item.job_type}
                         </span>
                         <span>
                           <FontAwesomeIcon
                             icon={faMoneyBill}
                             style={{ color: "#63E6BE", marginRight: "6px" }}
-                          />{" "}
+                          />
                           ${item.salary}
                         </span>
                       </div>
@@ -125,15 +145,19 @@ const ShowJob = () => {
               ))}
 
               <div className="text-center mt-4">
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handlePageChange(index + 1)}
-                      className="btn btn-outline-success mx-1"
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`btn mx-1 ${
+                      currentPage === index + 1
+                        ? "btn-success"
+                        : "btn-outline-success"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
               </div>
             </div>
           )}

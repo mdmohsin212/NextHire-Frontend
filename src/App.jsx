@@ -36,7 +36,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/job_details/:id" element={<JobDeatils />} />
           <Route path="/post_job" element={<JobPost />} />
-          <Route path="/employe_profile" element={<EmployeProfile />} />
+          <Route path="/my_jobs" element={<EmployeProfile />} />
           <Route path="/applicant_list/:id" element={<Applicant />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/running_job" element={<RunningJob />} />
