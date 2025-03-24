@@ -73,7 +73,7 @@ const Home = () => {
         </div>
         <div className="text-center pt-3">
           <div className="container">
-            <h1 className="text-center mb-3">Job Listing</h1>
+            <h1 className="text-center mb-3">Featured Jobs</h1>
 
             <div className="row mb-4">
               <div className="col-md-6">

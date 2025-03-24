@@ -127,7 +127,7 @@ return (
                       icon={faCheck}
                       style={{ color: "#00b074", marginRight: "8px" }}
                     />
-                    Location : {job.loaction}
+                    Location : {job.location}
                   </p>
                 </div>
               </div>

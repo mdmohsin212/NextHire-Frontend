@@ -49,7 +49,7 @@ const ShowJob = () => {
     <div className="d-flex flex-column min-vh-100">
       <div className="container-xxl py-3 flex-grow-1">
         <div className="container">
-          <h1 className="text-center mb-4">Job Listings</h1>
+          <h1 className="text-center mb-4">Featured Jobs</h1>
 
           <div className="row mb-4">
             <div className="col-md-6">
